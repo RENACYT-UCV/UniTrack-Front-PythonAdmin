@@ -25,7 +25,7 @@
     margin-bottom: 15px;
     
     .foto {
-      color: white;
+      color: #f5f7fa;
       font-size: 60px;
     }
   }
@@ -126,6 +126,12 @@ ion-content {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+.btn-verificar{
+  --background: #233559; 
+  --color: #f5f7fa;
+  --border-radius: 8px;
 }
 
 /* Media Queries para ajustes específicos */

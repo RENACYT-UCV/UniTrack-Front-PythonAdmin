@@ -1,6 +1,8 @@
 .header {
   position: absolute;
-  background: #0426ac;  
+  background: linear-gradient(rgba(4,38,172,0.4), rgba(4,38,172,0.4)),
+              url('/assets/correo.jpeg') no-repeat center center;
+  background-size: cover;
   height: 100vh;
   margin: 0px;
   width: 100%;
@@ -10,12 +12,14 @@
   align-items: center;
 }
 
+
 .form-container {
-    background: white;
+    background: #f5f7fa;
     border-radius: 40px;
     width: 90%;
     max-width: 400px;
     padding: 30px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 .login-form {
@@ -23,12 +27,22 @@
     box-shadow: none;
 }
 
+ion-list.login-form {
+  --background: transparent;
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+ion-item {
+  --background: transparent;
+  background-color: transparent !important;
+}
 .ptit {
     font-size: 18px;
     text-align: center;
     font-weight: 800;
     font-style: bold;
-    color: rgb(255, 255, 255);
+    color: #f5f7fa;
     margin-top: 0px;
 }
 
@@ -44,8 +58,7 @@
     font-size: 15px;
     font-weight: 600;
     --border-color: none;
-    border: solid 1px black;
-    background: rgba(207, 207, 207, 0.484);
+    background:#eaeaea;
     width: 100%; // Mantener el ancho
     height: 10px; // Reducir la altura
     padding: 8px 12px; // Ajustar el padding interno
@@ -55,23 +68,12 @@
     width: 100%;
 }
 
-.wel {
-    color: black;
-    font-size: 18px;
-    text-transform: none;
-    font-weight: 550;
-    margin-bottom: 20px;
-    margin-left: 0px;
-    display: flex;
-    justify-content: center; // Centra horizontalmente el elemento
-    align-items: center; // Centra verticalmente el elemento
-  }
 
 .close-title-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
+  
 }
 
 .btn-close,
@@ -101,31 +103,45 @@
   text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
+   margin-left: auto;
+  margin-right: auto;
 }
 
 .ion-button {
+    --background: #233559; 
     --box-shadow: none;
     --border-radius: 20px;
+    --color:#f5f7fa;
     text-transform: none;
     font-weight: 600;
     font-size: 21px;
     height: 55px;
     width: 90%;
     margin: 20px auto 0;
-  }
+   transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  ion-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  ion-radio-group {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  ion-radio-group ion-item {
-    margin-left: 16px;
-  }
+ion-button.custom-button:hover {
+  --background: #18253f;
+  transform: scale(1.02);
+}
+
+ion-button.custom-button:active {
+  transform: scale(0.98);
+}
+
+ion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-radio-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+ion-radio-group ion-item {
+  margin-left: 16px;
+}
