@@ -1,125 +1,210 @@
-.header {
-  position: absolute;
-  background: #0426ac;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-  margin: 0;
-}
+.register-page {
+  --background: transparent;
+  position: relative;
+  overflow: hidden;
 
-.form-container {
-  background: white;
-  border-radius: 40px;
-  width: 90%;
-  max-width: 400px;
-  min-width: 300px;
-  padding: 25px;
-  margin: 20px 0;
-  box-sizing: border-box;
-}
+  .background-blur {
+    background: url('/assets/register.jpeg') no-repeat center center/cover;
+    filter: blur(8px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
 
-.login-form {
-  background-color: transparent;
-  width: 100%;
-}
+  .form-wrapper {
+    max-width: 450px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 30px 20px;
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
 
-/* ESTILOS ORIGINALES CON MEJORAS */
-.ion-input {
-  margin-top: 5px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  --border-color: black;  
-  --border-width: 1px;    
-  --border-style: solid;  
-  background: rgba(207, 207, 207, 0.484);
-  width: 55%;
-  height: 35px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  border-radius: 4px; 
-}
+  .btn-close {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    ion-icon {
+      font-size: 24px;
+      color: #003a9b;
+    }
+  }
 
-/* Select con el mismo estilo de borde */
-ion-select {
-  border: 1px solid black !important; 
-  background: rgba(207, 207, 207, 0.484);
-  border-radius: 4px;
-  width: 55%;
-  height: 35px;
-  padding: 0 12px;
-  font-size: 0.9rem;
-}
+  .form-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #003a9b;
+    margin-bottom: 10px;
+  }
 
+  .subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #5c7fe6;
+    margin-bottom: 25px;
+  }
 
-.lbl {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-left: 15px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  white-space: nowrap;
-}
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
 
-.wel {
-  color: black;
-  font-size: 1.1rem;
-  text-transform: none;
-  font-weight: 550;
-  margin-bottom: 20px;
-  margin-left: 0;
-  text-align: center;
-}
+  .form-item {
+    --background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
-.btn-close {
-  position: absolute; 
-  left: 15px; 
-  top: 15px; 
-  width: 40px;
-  height: 40px;
-  --padding-start: 0;
-  --padding-end: 0;
-  --box-shadow: none;
-  color: black;
+    ion-label {
+      font-weight: 600;
+      color: #003a9b;
+    }
+
+    ion-input, ion-select {
+      padding: 10px 12px;
+      font-size: 15px;
+      color: #003a9b;
+    }
+
+    ion-icon {
+      font-size: 20px;
+      color: #007aff;
+    }
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, #3a60ff, #0040c1);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 12px #3a60ff88, 0 0 20px #3a60ff55;
   
-  ion-icon {
-    font-size: 1.8rem; 
-    transition: transform 0.2s ease; 
+    animation: floatButton 3s ease-in-out infinite, glowAura 2.5s infinite ease-in-out;
+  
+    &:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 25px #6c9effcc, 0 0 50px #3a60ff99;
+    }
+  
+    &::before {
+      content: "";
+      position: absolute;
+      background: radial-gradient(circle, #3a60ff44 0%, transparent 70%);
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      animation: rotateAura 6s linear infinite;
+      z-index: -1;
+    }
+  
+    @media (max-width: 480px) {
+      font-size: 15px;
+      height: 46px;
+    }
+  }
+  
+
+  /* ANIMACIONES */
+  @keyframes glowAura {
+    0% {
+      box-shadow: 0 0 12px #3a60ff, 0 0 24px #3a60ff66;
+    }
+    50% {
+      box-shadow: 0 0 20px #6a9aff, 0 0 40px #6a9aff88;
+    }
+    100% {
+      box-shadow: 0 0 12px #3a60ff, 0 0 24px #3a60ff66;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .animate-fade-delay {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .animate-field {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  .animate-button {
+    animation: fadeInUp 0.7s forwards;
+  }
+
+  @media (max-width: 480px) {
+    .form-wrapper {
+      padding: 20px;
+    }
+    .form-title {
+      font-size: 22px;
+    }
+    .submit-btn {
+      font-size: 15px;
+    }
+  }
+//responsive:
+@keyframes floatButton {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
 
-/* Botón de registro  */
-.ion-button {
-  --box-shadow: none;
-  --border-radius: 20px;
-  text-transform: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  height: 55px;
-  width: 90%;
-  margin: 20px auto 0;
-  display: block;
-  color: white;
+@keyframes glowAura {
+  0% {
+    box-shadow: 0 0 12px #3a60ff, 0 0 24px #3a60ff66;
+  }
+  50% {
+    box-shadow: 0 0 20px #6a9aff, 0 0 40px #6a9aff88;
+  }
+  100% {
+    box-shadow: 0 0 12px #3a60ff, 0 0 24px #3a60ff66;
+  }
+}
+
+@keyframes rotateAura {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 
-/* Ajustes para móviles  */
-@media (max-width: 480px) {
-  .form-container {
-    padding: 20px 15px;
-    border-radius: 30px;
-  }
-  
-  .ion-input, ion-select {
-    width: 100%;
-    margin-top: 8px;
-  }
-  
-  .lbl {
-    width: 100%;
-    margin-left: 0;
-  }
+
+
+
 }

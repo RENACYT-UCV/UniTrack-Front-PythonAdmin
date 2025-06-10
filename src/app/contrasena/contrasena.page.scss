@@ -17,7 +17,7 @@
 
 /* Contenedor del formulario */
 .form-container {
-  background: white;
+  background: rgb(255, 2, 2);
   border-radius: 40px;
   width: 90%;
   max-width: 400px;
@@ -98,8 +98,8 @@ ion-item {
 /* Botón de verificar */
 .ion-button {
   --border-radius: 12px;
-  --background: #0426ac;
-  --color: white;
+  --background: #710000;
+  --color: rgb(255, 0, 0);
   --height: 150px;      // Cambia aquí la altura del botón
   font-size: 1.1rem;
   font-weight: 600;

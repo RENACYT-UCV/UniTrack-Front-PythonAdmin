@@ -1,60 +1,43 @@
 <ion-content class="container" [fullscreen]="true">
-  <div class="header">
-    <p class="ptit">Universidad César Vallejo</p>
+  <!-- En index.html dentro del <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <div class="form-container">
-      <ion-list lines="none" class="ion-text-center login-form">
-        <ion-item>
-          <p class="wel">¡BIENVENIDO! INICIAR SESIÓN</p>
+  <div class="login-background">
+    <div class="login-card">
+      <div class="logo-header">
+        <img src="../../../assets/Logo.png" alt="Logo UCV" class="ucv-logo" />
+        <h1 class="ucv-title">Universidad César Vallejo</h1>
+      </div>
+      
+      <ion-list lines="none" class="login-form">
+
+        <h2 class="form-title">¡Bienvenido!</h2>
+        <p class="form-subtitle">Inicia sesión con tu correo institucional</p>
+
+        <ion-item class="input-item">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input type="email" [(ngModel)]="correo" placeholder="Ingrese su correo"></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label class="lbl">Correo Institucional:</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input type="text" fill="outline" class="ion-input" [(ngModel)]="correo" name="correo" placeholder="Ingrese su correo institucional">
+        <ion-item class="input-item">
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="contrasena"
+            placeholder="Contraseña">
           </ion-input>
+          <ion-button fill="clear" slot="end" (click)="togglePassword()">
+            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </ion-button>
         </ion-item>
 
+        <ion-button expand="block" class="login-button" (click)="login()">Iniciar sesión</ion-button>
 
-        <ion-item>
-  <ion-label class="lbl">Contraseña:</ion-label>
-</ion-item>
-<ion-item>
-  <ion-input 
-    [type]="showPassword ? 'text' : 'password'" 
-    fill="outline" 
-    class="ion-input" 
-    [(ngModel)]="contrasena" 
-    name="contrasena" 
-    placeholder="Ingrese su contraseña">
-  </ion-input>
-  <ion-button 
-    fill="clear" 
-    slot="end" 
-    (click)="togglePassword()"
-    class="eye-button"
-  >
-    <ion-icon 
-      [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
-      color="medium"
-    ></ion-icon>
-  </ion-button>
-</ion-item>
+        <p class="link-text" routerLink="/correo">¿Olvidaste tu contraseña?</p>
+        <p class="link-text" routerLink="/register">¿No tienes una cuenta? <strong>Regístrate</strong></p>
 
-        <ion-item class="ion-align-items-center">
-          <ion-button routerLink="" (click)="login()" class="ion-button">Iniciar sesión</ion-button>
-        </ion-item>
-        <ion-item class="creac">
-          <p class="pcreac ppcreac" routerLink="/register">¿No tienes una cuenta? Regístrate</p>
-        </ion-item>
-
-
-        <ion-item class="resco">
-          <p class="pres" routerLink="/correo">¿Olvidaste tu contraseña?</p>
-        </ion-item>
       </ion-list>
     </div>
   </div>
-
+  
 </ion-content>
