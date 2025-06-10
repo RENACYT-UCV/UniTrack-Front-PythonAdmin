@@ -1,104 +1,59 @@
-
-/* ESTRUCTURA PRINCIPAL */
-
-#main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 5%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-
-/* MENÚ LATERAL (Estilo consistente) */
-
-
-ion-menu {
-  width: 180px;
-  
-  ion-toolbar {
-    --background: #f2f2f2; 
-    --color: #333333; 
-    font-weight: bold;
-  }
-  
-  ion-item-divider {
-    --background: #f2f2f2; 
-    --color: #333333;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    --padding-start: 10px;
-    --padding-end: 10px;
-    
-    ion-icon {
-      color: #555555; 
-      margin-right: 10px;
-    }
-  }
-}
-
-/* TABLA (Estilo original) */
-
-.table-container {
+.table-container-salidas {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
+  overflow-x: auto;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
+  
   .tit {
-    background-color: #f2f2f2;
+    background-color: #DD2324 !important; 
+    color: white !important;
     font-weight: bold;
     text-align: center;
-    padding: 10px 0;
+    padding: 12px 0;
+    border-bottom: 2px solid #af1818 !important;
   }
 
+ 
   .sub {
     text-align: center;
     padding: 10px 0;
+    color: #16222d; 
+    border-bottom: 1px solid #eeeaea; 
+  }
+
+
+  ion-row:nth-child(even) .sub {
+    background-color: #eeeaea;
+  }
+
+
+  ion-row:hover .sub {
+    background-color: #af1818 !important;
+    color: white !important;
   }
 }
 
 
-/* TÍTULOS */
-
-.welcome {
-  font-family: Arial, sans-serif;
-  font-size: 36px;
+.report-salidas {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
   font-weight: bold;
   text-align: center;
-  color: #333333;
-  margin-top: 50px;
-  margin-bottom: 30px;
-}
-
-.report {
-  font-family: Arial, sans-serif;
-  font-size: 25px;
-  font-weight: bold;
-  text-align: center;
-  color: #333333;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  color: #DD2324 !important; 
+  margin: 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 
-/* CONTENIDO IONIC */
-
-ion-content {
-  --padding-start: 10px;
-  --padding-end: 10px;
-}
-
-.letr {
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+@media (max-width: 480px) {
+  .table-container-salidas {
+    ion-col {
+      min-width: 100px;
+    }
+  }
 }
