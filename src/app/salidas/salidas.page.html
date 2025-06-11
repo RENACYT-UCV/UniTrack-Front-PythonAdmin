@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="ion-padding">
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -8,31 +8,28 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding">
+  <ion-item lines="none">
+    <ion-label class="report-salidas">REPORTES DE SALIDAS</ion-label>
+  </ion-item>
 
-    <ion-item lines="none">
-      <ion-label class="report-salidas">REPORTES DE SALIDAS</ion-label>
-    </ion-item>
-
-    <div class="table-container-salidas">
-      <ion-grid>
-        <ion-row>
-          <ion-col class="tit" size="2"><strong>ID</strong></ion-col>
-          <ion-col class="tit" size="2"><strong>Usuario</strong></ion-col>
-          <ion-col class="tit" size="2"><strong>Correo</strong></ion-col>
-          <ion-col class="tit" size="2"><strong>Fecha</strong></ion-col>
-          <ion-col class="tit" size="2"><strong>Hora</strong></ion-col>
-          <ion-col class="tit" size="2"><strong>Modo</strong></ion-col>
-        </ion-row>
-        <ion-row *ngFor="let registro of reportes">
-          <ion-col class="sub" size="2">{{ registro.idReporte }}</ion-col>
-          <ion-col class="sub" size="2">{{ registro.nombre }}</ion-col>
-          <ion-col class="sub" size="2">{{ registro.email }}</ion-col>
-          <ion-col class="sub" size="2">{{ registro.fecha }}</ion-col>
-          <ion-col class="sub" size="2">{{ registro.hora }}</ion-col>
-          <ion-col class="sub" size="2">{{ registro.modo }}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-content>
+  <div class="table-container-salidas">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="tit" size="2"><strong>ID</strong></ion-col>
+        <ion-col class="tit" size="2"><strong>Usuario</strong></ion-col>
+        <ion-col class="tit" size="2"><strong>Correo</strong></ion-col>
+        <ion-col class="tit" size="2"><strong>Fecha</strong></ion-col>
+        <ion-col class="tit" size="2"><strong>Hora</strong></ion-col>
+        <ion-col class="tit" size="2"><strong>Modo</strong></ion-col>
+      </ion-row>
+      <ion-row *ngFor="let registro of reportes">
+        <ion-col class="sub" size="2">{{ registro.idReporte }}</ion-col>
+        <ion-col class="sub" size="2">{{ registro.nombre }}</ion-col>
+        <ion-col class="sub" size="2">{{ registro.email }}</ion-col>
+        <ion-col class="sub" size="2">{{ registro.fecha }}</ion-col>
+        <ion-col class="sub" size="2">{{ registro.hora }}</ion-col>
+        <ion-col class="sub" size="2">{{ registro.modo }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
