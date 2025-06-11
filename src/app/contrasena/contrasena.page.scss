@@ -24,11 +24,19 @@
   position: relative; 
   margin: 20px 0;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeInScale 0.6s ease-out;
 }
 
 .login-form {
     background-color: transparent;
     box-shadow: none;
+}
+
+.container-newpassword{
+  color: #215fad;
+  span{
+    margin-left: 10px;
+  }
 }
 
 ion-list.login-form {
@@ -46,6 +54,14 @@ ion-item {
 .close-title-row {
   color: #16222d;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ion-icon {
+    color: #215fad;
+    font-size: 1.3rem;
+  }
+
 }
 
 .btn-close,
@@ -56,11 +72,12 @@ ion-item {
 }
 
 .btn-close {
-  margin-right: 12px;
+  position: relative;
+  left: -10px;
   --padding-start: 0;
   --padding-end: 0;
   --box-shadow: none;
-  color: black;
+  color: #215fad;
   ion-icon {
     font-size: 1.8rem;
     transition: transform 0.2s ease;
@@ -74,7 +91,8 @@ ion-item {
   flex: 1;
   text-align: center;
   font-size: 1.1rem;
-  font-weight: 600;
+  color: #16222d;
+  padding-left: 5px;
 }
 
 /* Mensaje de instrucción */
@@ -97,7 +115,6 @@ ion-item {
 .ion-input {
   font-size: 0.95rem;
   font-weight: 500;
-  border: 1px solid #333;
   background: rgba(207, 207, 207, 0.3);
   width: 100%;
   height: 48px;
@@ -125,7 +142,7 @@ ion-item {
 } */
 
 .btn-password {
-  --background: #233559; 
+  --background: #215fad; 
     --box-shadow: none;
     --border-radius: 20px;
     --color:#f5f7fa;
@@ -139,7 +156,7 @@ ion-item {
 }
 
 .btn-password:hover {
-  --background: #18253f;
+  --background: #233559;
   transform: scale(1.02);
   cursor: pointer;
 }
@@ -176,4 +193,9 @@ ion-button.btn-password:active {
     height: 48px;
     font-size: 0.95rem;
   }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }

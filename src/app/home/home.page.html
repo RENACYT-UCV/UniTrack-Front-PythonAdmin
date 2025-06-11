@@ -10,32 +10,33 @@
   </ion-header>
 
   <!-- Contenido principal -->
-  <ion-content class="ion-padding">
-    <div class="welcome">¡BIENVENIDO!</div>
-    
-    <div class="user-info">
-      <ion-item class="ionit" lines="none">
-        <div class="imgper"><ion-label class="foto">Foto</ion-label></div>
-        <ion-label class="nom">{{ nombrecompleto }}</ion-label>
-      </ion-item>
-    </div>    
-       
-
-      <div class="table-container">
-        <div class="tit">Código de Administrador:</div>
-        <div class="sub">{{codigo}}</div>
-        <div class="tit">Correo universitario:</div>
-        <div class="sub">{{correo}}</div>
-        <div class="tit">Edad:</div>
-        <div class="sub">{{edad}}</div>
-        <div class="tit">Sexo:</div>
-        <div class="sub">{{sexo}}</div>
+  <ion-content>
+    <div class="content-wrapper">
+      <div class="container-main">
+        <div class="welcome">¡BIENVENIDO!</div>
+      
+        <div class="user-info">
+          <ion-item class="ionit" lines="none">
+            <div class="imgper"><ion-label class="foto"></ion-label></div>
+            <ion-label class="nom">{{ nombrecompleto }}</ion-label>
+          </ion-item>
+        </div>
+      
+          <div class="table-container">
+            <div class="tit">Código de Administrador:</div>
+            <div class="sub">{{codigo}}</div>
+            <div class="tit">Correo universitario:</div>
+            <div class="sub">{{correo}}</div>
+            <div class="tit">Edad:</div>
+            <div class="sub">{{edad}}</div>
+            <div class="tit">Sexo:</div>
+            <div class="sub">{{sexo}}</div>
+          </div>
+           <div class="centro">
+            <ion-button (click)="verifyQR(qrLeido)" class="btn-verificar">Verificar QR</ion-button>
+          </div>
       </div>
-
-
-       <div class="centro">
-        <ion-button (click)="verifyQR(qrLeido)"class="btn-verificar">Verificar QR</ion-button>
-      </div>
+    </div>
     
   </ion-content>
 </ion-content>

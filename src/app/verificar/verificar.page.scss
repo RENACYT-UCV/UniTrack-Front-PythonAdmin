@@ -20,6 +20,7 @@
     max-width: 400px;
     padding: 30px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    animation: fadeInScale 0.6s ease-out;
 }
 
 .login-form {
@@ -38,6 +39,7 @@ ion-item {
   background-color: transparent !important;
 }
 .ptit {
+    align-items: center;
     font-size: 18px;
     text-align: center;
     font-weight: 800;
@@ -62,6 +64,7 @@ ion-item {
     width: 100%; // Mantener el ancho
     height: 10px; // Reducir la altura
     padding: 8px 12px; // Ajustar el padding interno
+   --placeholder-color:#16222d;
 }
 
 .ion-select {
@@ -71,9 +74,12 @@ ion-item {
 
 .close-title-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  
+  align-items: flex-start;
+  flex-direction: row;
+  margin-bottom: 16px;
+  width: 100%;
+  padding-left: 13px;
+   
 }
 
 .btn-close,
@@ -88,7 +94,7 @@ ion-item {
   --padding-start: 0;
   --padding-end: 0;
   --box-shadow: none;
-  color: black;
+  color: #215fad;
   ion-icon {
     font-size: 1.8rem;
     transition: transform 0.2s ease;
@@ -99,16 +105,23 @@ ion-item {
 }
 
 .tit {
-  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 1.1rem;
-  font-weight: 600;
-   margin-left: auto;
+  margin-left: auto;
   margin-right: auto;
+  color: #555;
+  ion-icon {
+    font-size: 2.5rem;       
+    margin-right: -4px; 
+    color: #215fad;
+  }
 }
 
 .ion-button {
-    --background: #233559; 
+    --background: #215fad; 
     --box-shadow: none;
     --border-radius: 20px;
     --color:#f5f7fa;
@@ -119,6 +132,19 @@ ion-item {
     width: 90%;
     margin: 20px auto 0;
    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.container-token{
+  color: #215fad;
+}
+
+.container-token i{
+  
+  margin-right: 8px;
+}
+
+.information-circle-outline{
+  font-size: 30px;
 }
 
 ion-button.custom-button:hover {
@@ -144,4 +170,10 @@ ion-radio-group {
 
 ion-radio-group ion-item {
   margin-left: 16px;
+}
+
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }

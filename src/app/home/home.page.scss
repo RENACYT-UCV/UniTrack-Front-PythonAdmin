@@ -7,17 +7,43 @@
   margin: 0 auto;
 }
 
+ion-content {
+  --background: linear-gradient(to bottom right, rgba(4, 38, 172, 0.4), rgba(0, 153, 255, 0.6)),
+              url('/assets/ucv-sede.png') no-repeat center center;
+  background-size: cover;
+  --padding-start: 0px !important;
+  --padding-end: 0px !important;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100%;
+  width: 100%;
+}
+
+.container-main {
+  border: 1px solid white;
+  background-color: #f5f7fa;
+  max-width: 700px;
+  width: 100%;
+  border-radius: 20px;
+}
+
 .user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
   width: 100%;
+  background-color: #f5f7fa;
 
   .imgper {
     height: 120px;
     width: 120px;
-    background-color: #555;
+    background-image: url(../../assets/iconper.png);
+    background-size: cover;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -25,16 +51,20 @@
     margin-bottom: 15px;
     
     .foto {
-      color: #f5f7fa;
+      color: white;
       font-size: 60px;
     }
   }
+
+  .ionit{
+    --background: #f5f7fa !important;
+  } 
 
   .nom {
     font-size: clamp(1.2rem, 4vw, 1.5rem);
     font-weight: bold;
     text-align: center;
-    color: #003366;
+    color: #16222d;
     margin: 10px 0;
     text-transform: capitalize;
     width: 100%;
@@ -47,6 +77,7 @@
   border-radius: 5px;
   padding: 10px;
   overflow-x: auto; 
+  background-color: #f5f7fa;
 }
 
 .tit, .sub {
@@ -55,25 +86,30 @@
 }
 
 .tit {
-  background-color: #f2f2f2;
+  background-color: #215fad;
+  color: #f5f7fa;
   font-weight: bold;
+  border-radius: 20px;
 }
 
-
+.sub {
+  color: #263e55;
+  font-weight: bold;
+}
 /* MENÚ LATERAL  */
 
 ion-menu {
   width: 180px;
   
   ion-toolbar {
-    --background: #f2f2f2; /* Gris claro para el header */
-    --color: #333333; /* Texto oscuro */
-    font-weight: bold; /* Mantenemos negrita como en tu versión */
+    --background: #f2f2f2;
+    --color: #333333; 
+    font-weight: bold; 
   }
   
   ion-item-divider {
-    --background: #f2f2f2; /* Gris claro */
-    --color: #333333; /* Texto oscuro */
+    --background: #f2f2f2; 
+    --color: #333333; 
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -81,7 +117,7 @@ ion-menu {
     --padding-end: 10px;
     
     ion-icon {
-      color: #555555; /* Gris oscuro para íconos */
+      color: #555555; 
       margin-right: 10px;
     }
   }
@@ -89,25 +125,25 @@ ion-menu {
 
 .welcome {
   font-family: Arial, sans-serif;
-  font-size: clamp(24px, 6vw, 36px); // Responsive
+  font-size: clamp(24px, 6vw, 36px); 
   font-weight: bold;
   text-align: center;
-  color: #333333;
+  color: #215fad;
   margin: 30px 0;
 }
 
 .report {
   font-family: Arial, sans-serif;
-  font-size: clamp(18px, 4vw, 25px); // Responsive
+  font-size: clamp(18px, 4vw, 25px); 
   font-weight: bold;
   text-align: center;
-  color: #333333;
+  color: #16222d;
   margin: 10px 0;
 }
 
 ion-menu {
-  width: 250px; // Un poco más ancho para mejor usabilidad
-  max-width: 80%; // Límite para móviles
+  width: 250px; 
+  max-width: 80%; 
 }
 
 ion-content {
@@ -129,8 +165,8 @@ ion-content {
 }
 
 .btn-verificar{
-  --background: #233559; 
-  --color: #f5f7fa;
+  --background: #215fad; 
+  --color: white;
   --border-radius: 8px;
 }
 
