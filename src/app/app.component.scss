@@ -19,7 +19,7 @@ ion-menu {
     --padding-end: 10px;
     
     ion-icon {
-      color: #555555;
+      color: #16222d;
       margin-right: 10px;
     }
   }
@@ -27,7 +27,7 @@ ion-menu {
 
 /* BOTÓN HAMBURGUESA */
 ion-menu-button {
-  --color: #333;
+  --color: #16222d;
   z-index: 999;
   min-width: 44px;
   min-height: 44px;
@@ -38,6 +38,43 @@ ion-content {
   --padding-start: 10px;
   --padding-end: 10px;
 }
+
+/* Estilo base para cada item del menú */
+.baby-blue-item-divider {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 5px 8px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  color: #333333;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+.baby-blue-item-divider:hover {
+  background-color: #d0e6ff; 
+  transform: translateX(5px); 
+}
+
+.baby-blue-item-divider ion-icon {
+  color: #215fad;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Ícono se agranda ligeramente al hacer hover */
+.baby-blue-item-divider:hover ion-icon {
+  transform: scale(1.1);
+}
+
+/* Texto del ítem */
+.baby-blue-item-divider ion-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
 
 /* Media Queries para menú */
 @media (max-width: 768px) {

@@ -1,18 +1,16 @@
 <ion-content class="ion-padding">
+  <div class="background-blur"></div>
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button menu="main-menu"></ion-menu-button>
       </ion-buttons>
-      <ion-title>Reportes Salidas</ion-title>
+      <ion-title>Reportes Salidas</ion-title> 
     </ion-toolbar>
   </ion-header>
 
-  <ion-item lines="none">
-    <ion-label class="report-salidas">REPORTES DE SALIDAS</ion-label>
-  </ion-item>
-
-  <div class="table-container-salidas">
+  
+  <div class="table-container">
     <ion-grid>
       <ion-row>
         <ion-col class="tit" size="2"><strong>ID</strong></ion-col>
@@ -22,7 +20,7 @@
         <ion-col class="tit" size="2"><strong>Hora</strong></ion-col>
         <ion-col class="tit" size="2"><strong>Modo</strong></ion-col>
       </ion-row>
-      <ion-row *ngFor="let registro of reportes">
+      <ion-row *ngFor="let registro of reportes"> <!-- Asegúrate de usar tu variable correcta -->
         <ion-col class="sub" size="2">{{ registro.idReporte }}</ion-col>
         <ion-col class="sub" size="2">{{ registro.nombre }}</ion-col>
         <ion-col class="sub" size="2">{{ registro.email }}</ion-col>
