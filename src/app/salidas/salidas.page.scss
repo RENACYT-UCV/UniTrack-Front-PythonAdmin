@@ -1,104 +1,118 @@
-
-/* ESTRUCTURA PRINCIPAL */
-
 #main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 5%;
-  max-width: 600px;
+  padding: 1.9rem 5%;
+  max-width: 800px; 
   margin: 0 auto;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%); // Fondo degradado sutil
+  min-height: 100vh;
 }
 
 
-/* MENÚ LATERAL (Estilo consistente) */
-
-
-ion-menu {
-  width: 180px;
+.table-container-salidas {
+  border: 1px solid #e0e0e0;
+  border-radius: 11px; 
+  overflow: hidden; 
+  width: 100%;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.08);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
   
-  ion-toolbar {
-    --background: #f2f2f2; 
-    --color: #333333; 
-    font-weight: bold;
-  }
-  
-  ion-item-divider {
-    --background: #f2f2f2; 
-    --color: #333333;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    --padding-start: 10px;
-    --padding-end: 10px;
-    
-    ion-icon {
-      color: #555555; 
-      margin-right: 10px;
-    }
-  }
-}
-
-/* TABLA (Estilo original) */
-
-.table-container {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
 
   .tit {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background: linear-gradient(135deg, #DD2324 0%, #af1818 100%) !important;
+    color: white !important;
+    font-weight: 600;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem;
+    position: relative;
+    border-bottom: none !important;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 254, 0.1);
+    }
   }
-
+  
+  /* Filas de contenido */
   .sub {
     text-align: center;
-    padding: 10px 0;
+    padding: 0.8rem 1rem;
+    color: #2c3e49;
+    transition: all 0.25s ease;
+    border-bottom: 1px solid #f0f0f0;
+    &:hover {
+      transform: scale(1.01); // Efecto de "levitación" sutil
+    }
+  }
+
+  
+  ion-row:nth-child(even) .sub {
+    background-color: #f8f8f8;
+  }
+
+  
+  ion-row:hover .sub {
+    background: #af1818 !important;
+    color: white !important;
+    box-shadow: 0 2px 5px rgba(175, 24, 24, 0.2);
   }
 }
 
-
-/* TÍTULOS */
-
-.welcome {
-  font-family: Arial, sans-serif;
-  font-size: 36px;
-  font-weight: bold;
+/* Título de sección */
+.report-salidas {
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  font-weight: 700;
   text-align: center;
-  color: #333333;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  color: #DD2324 !important;
+  margin: 1.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: #DD2324;
+    margin: 0.5rem auto 0;
+    border-radius: 3px;
+  }
 }
 
-.report {
-  font-family: Arial, sans-serif;
-  font-size: 25px;
-  font-weight: bold;
-  text-align: center;
-  color: #333333;
-  margin-top: 5px;
-  margin-bottom: 5px;
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-
-/* CONTENIDO IONIC */
-
-ion-content {
-  --padding-start: 10px;
-  --padding-end: 10px;
-}
-
-.letr {
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+/* Responsive mejorado */
+@media (max-width: 834px) {
+  .table-container {
+    .tit, .sub {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .report-salidas {
+    font-size: clamp(1.3rem, 5vw, 1.6rem);
+  }
 }

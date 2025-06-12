@@ -1,101 +1,119 @@
-
-/* ESTRUCTURA PRINCIPAL */
-
 #main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 5%;
-  max-width: 600px;
+  padding: 2rem 5%;
+  max-width: 800px; // Aumenté un poco para mejor respiración
   margin: 0 auto;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%); // Fondo degradado sutil
+  min-height: 100vh;
 }
-
-
-/* MENÚ LATERAL (Estilo consistente) */
-
-ion-menu {
-  width: 180px;
-  
-  ion-toolbar {
-    --background: #f2f2f2;
-    --color: #333333;
-    font-weight: bold;
-  }
-  
-  ion-item-divider {
-    --background: #f2f2f2;
-    --color: #333333;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    --padding-start: 10px;
-    --padding-end: 10px;
-    
-    ion-icon {
-      color: #555555;
-      margin-right: 10px;
-    }
-  }
-}
-
-
-/* TABLA (Combinación de ambos estilos) */
 
 .table-container {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  overflow-x: auto; /* Añade scroll horizontal en móviles */
-
+  border: 1px solid #d1d9e6;
+  border-radius: 12px; // Bordes más redondeados
+  overflow: hidden; // Para que el border-radius funcione con overflow
+  width: 100%;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.6s  ease-out forwards;
+  
   .tit {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background: linear-gradient(135deg, #233559 0%, #182531 100%); // Degradado profesional
+    color: white;
+    font-weight: 600;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
-
+  
   .sub {
     text-align: center;
-    padding: 10px 0;
+    padding: 0.8rem 1rem;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e3e8ee;
+    
+    &:hover {
+      transform: scale(1.02); // Efecto de "levitación" sutil
+    }
   }
-}
 
+  ion-row:nth-child(even) .sub {
+    background-color: #f8fafc;
+  }
 
-/* TÍTULOS (Versión mejorada) */
-
-.welcome {
-  font-family: Arial, sans-serif;
-  font-size: clamp(1.8rem, 6vw, 2.25rem); 
-  font-weight: bold;
-  text-align: center;
-  color: #333333;
-  margin: 30px 0; 
+  ion-row:hover .sub {
+    background: #182531 !important;
+    color: white;
+    box-shadow: 0 2px 8px rgba(24, 37, 49, 0.2);
+  }
 }
 
 .report {
-  font-family: Arial, sans-serif;
-  font-size: clamp(1.25rem, 5vw, 1.75rem); /* Haciéndolo responsive */
-  font-weight: bold;
+  font-size: clamp(1.5rem, 5vw, 2rem); // Más grande para jerarquía
+  font-weight: 700;
   text-align: center;
-  color: #333333;
-  margin: 15px 0;
+  color: #233559;
+  margin: 2rem 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, #233559, transparent);
+    margin: 0.5rem auto 0;
+    border-radius: 3px;
+  }
 }
 
-
-ion-content {
-  --padding-start: 10px;
-  --padding-end: 10px;
+// Animaciones
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.letr {
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
+@media (max-width: 834px) {
+  .table-container {
+    .tit, .sub {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
+// Efecto de carga escalonada para filas (opcional)
+@for $i from 1 through 10 {
+  ion-row:nth-child(#{$i}) {
+    animation-delay: #{$i * 0.08}s;
+  }
 }
 
-.centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+.report {
+    font-size: 1.4rem;
+  }
+
 }
