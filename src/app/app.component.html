@@ -9,18 +9,27 @@
     <ion-content>
       <ion-list>
         <ion-item-divider routerLink="/home" class="baby-blue-item-divider">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-item-divider>
+
         <ion-item-divider routerLink="/entradas" class="baby-blue-item-divider">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
           <ion-label>Reporte de entradas</ion-label>
         </ion-item-divider>
+
         <ion-item-divider routerLink="/salidas" class="baby-blue-item-divider">
+          <ion-icon name="exit-outline" slot="start"></ion-icon> 
           <ion-label>Reporte de salidas</ion-label>
         </ion-item-divider>
+
         <ion-item-divider (click)="logout()" class="baby-blue-item-divider">
+          <ion-icon name="power-outline" slot="start"></ion-icon> 
           <ion-label>Cerrar sesión</ion-label>
         </ion-item-divider>
       </ion-list>
+
+
     </ion-content>
   </ion-menu>
 

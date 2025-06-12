@@ -1,8 +1,4 @@
 /* Estilos generales del contenedor */
-.container {
-  --background: #0426ac;
-}
-
 .header {
   position: relative; /* Cambio de absolute para mejor manejo */
   background: #0426ac;
@@ -13,26 +9,59 @@
   justify-content: center;
   align-items: center;
   padding: 20px 0;
+  background: linear-gradient(rgba(99, 114, 172, 0.4), rgba(81, 104, 197, 0.4)),
+              url('/assets/ucv-sede.png') no-repeat center center;
+  background-size: cover;
 }
 
 /* Contenedor del formulario */
 .form-container {
-  background: rgb(255, 2, 2);
+  background: #f5f7fa;
   border-radius: 40px;
   width: 90%;
   max-width: 400px;
   padding: 30px;
   position: relative; 
   margin: 20px 0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeInScale 0.6s ease-out;
+}
+
+.login-form {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.container-newpassword{
+  color: #215fad;
+  span{
+    margin-left: 10px;
+  }
+}
+
+ion-list.login-form {
+  --background: transparent;
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+ion-item {
+  --background: transparent;
+  background-color: transparent !important;
 }
 
 /* Botón de cerrar */
 .close-title-row {
+  color: #16222d;
+  margin-bottom: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  align-items: center;
+  ion-icon {
+    color: #215fad;
+    font-size: 1.3rem;
+  }
+
 }
 
 .btn-close,
@@ -43,11 +72,12 @@
 }
 
 .btn-close {
-  margin-right: 12px;
+  position: relative;
+  left: -10px;
   --padding-start: 0;
   --padding-end: 0;
   --box-shadow: none;
-  color: black;
+  color: #215fad;
   ion-icon {
     font-size: 1.8rem;
     transition: transform 0.2s ease;
@@ -61,7 +91,8 @@
   flex: 1;
   text-align: center;
   font-size: 1.1rem;
-  font-weight: 600;
+  color: #16222d;
+  padding-left: 5px;
 }
 
 /* Mensaje de instrucción */
@@ -79,14 +110,11 @@ ion-item {
   --padding-start: 0;
   --inner-padding-end: 0;
   --min-height: 60px;
-  margin-bottom: 15px;
 }
 
 .ion-input {
-  margin-top: 10px;
   font-size: 0.95rem;
   font-weight: 500;
-  border: 1px solid #333;
   background: rgba(207, 207, 207, 0.3);
   width: 100%;
   height: 48px;
@@ -96,7 +124,7 @@ ion-item {
 }
 
 /* Botón de verificar */
-.ion-button {
+/* .ion-button {
   --border-radius: 12px;
   --background: #710000;
   --color: rgb(255, 0, 0);
@@ -104,7 +132,6 @@ ion-item {
   font-size: 1.1rem;
   font-weight: 600;
   width: 100%;
-  margin: 25px 0 0 0;
   --box-shadow: 0 2px 8px rgba(4, 38, 172, 0.3);
   transition: transform 0.2s ease, opacity 0.2s ease;
 
@@ -112,7 +139,32 @@ ion-item {
     transform: scale(0.98);
     opacity: 0.9;
   }
+} */
+
+.btn-password {
+  --background: #215fad; 
+    --box-shadow: none;
+    --border-radius: 20px;
+    --color:#f5f7fa;
+    text-transform: none;
+    font-weight: 600;
+    font-size: 21px;
+    height: 55px;
+    width: 90%;
+    margin: 20px auto 0;
+   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.btn-password:hover {
+  --background: #233559;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+ion-button.btn-password:active {
+  transform: scale(0.98);
+}
+
 
 /* Media queries para responsive */
 @media (max-width: 480px) {
@@ -141,4 +193,9 @@ ion-item {
     height: 48px;
     font-size: 0.95rem;
   }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }

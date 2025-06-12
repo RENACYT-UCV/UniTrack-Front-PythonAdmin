@@ -1,18 +1,21 @@
 <ion-content class="container" [fullscreen]="true">
   <div class="header">
     <div class="form-container">
+
+      <ion-button class="btn-close" fill="clear" routerLink="/login">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+
       <ion-list lines="none" class="ion-text-center login-form">
 
         <div class="close-title-row">
-          <ion-button class="btn-close" fill="clear" routerLink="/login">
-            <ion-icon slot="icon-only" name="close-outline"></ion-icon>
-          </ion-button>
-          <span class="tit">Ingrese Su Nueva Contraseña</span>
+          <ion-icon name="key-outline" slot="start"></ion-icon>
+          <span class="tit">Su nueva contraseña debe ser diferente que la anterior</span>
           <span class="btn-close-placeholder"></span>
         </div>
 
-        <ion-item>
-          <ion-label>Nueva contraseña:</ion-label>
+        <ion-item class="container-newpassword">
+          <ion-label><i class="fas fa-lock"></i><span> Nueva contraseña:</span></ion-label>
         </ion-item>
 
         <ion-item>
@@ -23,8 +26,8 @@
 
 
         <ion-item class="ion-align-items-center">
-          <ion-button  expand="block" color="primary" (click)="resetPassword()">
-            Cambiar contraseña
+          <ion-button class="ion-button btn-password" (click)="resetPassword()">
+            Actualizar
           </ion-button>
         </ion-item>
 
