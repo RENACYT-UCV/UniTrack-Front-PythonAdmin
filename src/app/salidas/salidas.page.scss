@@ -1,3 +1,13 @@
+@import 'src/theme/tablas_base'; // Importa los estilos compartidos
+
+/* Personalización para Salidas */
+.report {
+  color: #c62828; // Color rojo para diferenciar
+}
+
+/* Cambia el degradado del header si lo deseas */
+.table-container .tit {
+  background: linear-gradient(135deg, #c62828 0%, #8e0000 100%);
 #main-content {
   display: flex;
   flex-direction: column;
@@ -115,4 +125,4 @@
   .report-salidas {
     font-size: clamp(1.3rem, 5vw, 1.6rem);
   }
-}
+}  }

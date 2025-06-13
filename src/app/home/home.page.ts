@@ -38,10 +38,10 @@ export class HomePage implements OnInit {
     this.correo = this.currentUser.correo;
     this.edad = this.currentUser.edad;
     this.sexo = this.currentUser.sexo;
-  } else {
+  } /*else {
     // Si no hay sesión, redirige al login
     this.router.navigate(['/login']);
-  }
+  }*/
 }
 
   verifyQR(qrLeido: string) {

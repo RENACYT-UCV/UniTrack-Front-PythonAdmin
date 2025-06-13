@@ -6,17 +6,17 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    
   },
   {
     path: 'entradas',
     loadChildren: () => import('./entradas/entradas.module').then( m => m.EntradasPageModule),
-    canActivate: [AuthGuard]
+   
   },
   {
     path: 'salidas',
     loadChildren: () => import('./salidas/salidas.module').then( m => m.SalidasPageModule),
-    canActivate: [AuthGuard]
+    
   },
   // Rutas públicas (sin AuthGuard)
   {

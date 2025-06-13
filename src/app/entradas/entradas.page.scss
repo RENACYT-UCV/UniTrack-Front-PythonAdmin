@@ -1,3 +1,5 @@
+@import 'src/theme/tablas_base'; // Importa los estilos compartidos
+
 #main-content {
   display: flex;
   flex-direction: column;
@@ -64,26 +66,9 @@
 }
 
 .report {
-  font-size: clamp(1.5rem, 5vw, 2rem); // Más grande para jerarquía
-  font-weight: 700;
-  text-align: center;
-  color: #233559;
-  margin: 2rem 0 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  position: relative;
-  display: inline-block;
-  
-  &::after {
-    content: '';
-    display: block;
-    width: 50%;
-    height: 3px;
-    background: linear-gradient(90deg, #233559, transparent);
-    margin: 0.5rem auto 0;
-    border-radius: 3px;
-  }
+  color: $color-primario; 
 }
+
 
 // Animaciones
 @keyframes fadeInUp {
@@ -95,25 +80,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@media (max-width: 834px) {
-  .table-container {
-    .tit, .sub {
-      padding: 0.75rem 0.5rem;
-      font-size: 0.9rem;
-    }
-  }
-
-// Efecto de carga escalonada para filas (opcional)
-@for $i from 1 through 10 {
-  ion-row:nth-child(#{$i}) {
-    animation-delay: #{$i * 0.08}s;
-  }
-}
-
-.report {
-    font-size: 1.4rem;
-  }
-
 }
