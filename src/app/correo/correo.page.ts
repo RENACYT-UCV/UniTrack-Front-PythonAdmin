@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
-import { NavController,ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { EnvioCorreoService } from '../services/envio-correo.service';
 
 @Component({
@@ -11,8 +10,9 @@ import { EnvioCorreoService } from '../services/envio-correo.service';
 })
 export class CorreoPage implements OnInit {
 
-  email: string = ''; 
-  isSubmitting = false; // Para prevenir envío doble
+  email: string = '';
+  isSubmitting = false;
+  sent = false;
 
   constructor(
     private userService: EnvioCorreoService,
@@ -32,19 +32,18 @@ export class CorreoPage implements OnInit {
     });
     await toast.present();
   }
-  
+
   sendVerificationCode() {
     if (this.isSubmitting) return;
     this.isSubmitting = true;
 
-    // Validar campo requerido
+    // Validar campos
     if (!this.email) {
       this.presentToast('El correo es obligatorio');
       this.isSubmitting = false;
       return;
     }
 
-    // Validar formato de correo institucional
     const correoRegex = /^[a-zA-Z0-9._%+-]+@ucvvirtual\.edu\.pe$/;
     if (!correoRegex.test(this.email)) {
       this.presentToast('El correo debe ser institucional y válido');
@@ -52,23 +51,25 @@ export class CorreoPage implements OnInit {
       return;
     }
 
-    // Validar longitud máxima
     if (this.email.length > 100) {
       this.presentToast('El correo no debe superar 100 caracteres');
       this.isSubmitting = false;
       return;
     }
-    
+
     this.userService.sendVerificationCodee(this.email).subscribe(
       response => {
-        this.navCtrl.navigateForward('/verificar');
+        this.sent = true;
+        setTimeout(() => {
+          this.sent = false;
+          this.navCtrl.navigateForward('/verificar');
+        }, 2000);
         this.isSubmitting = false;
       },
       error => {
-        this.presentToast(error.message || 'Error al enviar el código de verificación');
+        this.presentToast(error.message || 'Error al enviar el código');
         this.isSubmitting = false;
       }
     );
   }
-
 }
