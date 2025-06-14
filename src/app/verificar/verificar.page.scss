@@ -90,11 +90,14 @@ ion-item {
 }
 
 .btn-close {
-  margin-right: 12px;
+  margin-right: 0px;
   --padding-start: 0;
   --padding-end: 0;
   --box-shadow: none;
   color: #215fad;
+  margin-left: auto;
+  margin-right: 10px;
+  display: block;
   ion-icon {
     font-size: 1.8rem;
     transition: transform 0.2s ease;
@@ -172,6 +175,13 @@ ion-radio-group ion-item {
   margin-left: 16px;
 }
 
+@media (max-width: 480px) {
+  .tit {
+    ion-icon {
+      margin-right: 2px;
+    }
+  }
+}
 
 @keyframes fadeInScale {
   from { opacity: 0; transform: scale(0.9); }
