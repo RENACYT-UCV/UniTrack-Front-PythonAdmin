@@ -3,12 +3,13 @@ ion-content.correo-page {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  
 
   .background-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(rgba(4,38,172,0.4), rgba(4,38,172,0.4)),
-                url('/assets/correo.jpeg') no-repeat center center;
+                url('/assets/icon/correo.jpeg') no-repeat center center; //CAMBIAR LA RUTA SEGUN SEA NESESARIO
     background-size: cover;
     filter: blur(6px);
     z-index: 0;
@@ -21,28 +22,17 @@ ion-content.correo-page {
     height: 100vh;
     width: 100%;
   }
-  
+
   ion-row {
     width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
   }
-  
+
   ion-col {
     display: flex;
     justify-content: center;
   }
-
-  .grid-center {
-    align-items: flex-start;
-    padding-top: 80px; // desplaza la tarjeta hacia abajo ligeramente
-  }
-  
-  ion-content.correo-page {
-    --padding-top: 0;
-    --padding-bottom: 0;
-  }
-  
 
   .reset-card {
     position: relative;
@@ -50,12 +40,12 @@ ion-content.correo-page {
     background: rgba(255, 255, 255, 0.98);
     border-radius: 24px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-    padding: 24px; /* Añade espacio interno */
+    padding: 24px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
     animation: fadeInScale 0.6s ease-out;
-    width: 250%;
-    max-width: 500px; /* Aumenta el ancho máximo */
   }
-  
 
   .close-btn {
     position: absolute;
@@ -63,20 +53,36 @@ ion-content.correo-page {
     right: 12px;
     --padding: 0;
     --background: transparent;
-    font-size: 20px;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
     color: #0426ac;
     z-index: 3;
+    
+    ion-icon {
+      font-size: 1.5em;
+    }
   }
 
   .card-header {
     text-align: center;
-    padding: 32px 16px 16px;
+    padding: 16px 16px 24px;
 
-    h2 {
-      margin: 0;
-      font-size: 22px;
-      font-weight: 700;
-      color: #0426ac;
+    ion-card-title {
+      h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        color: #0426ac;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        ion-icon {
+          margin-right: 12px;
+          font-size: 28px;
+        }
+      }
     }
 
     p {
@@ -87,33 +93,58 @@ ion-content.correo-page {
   }
 
   .custom-item {
-    margin: 10px;
-  
+    --background: transparent;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    margin-bottom: 24px;
+
+    .helper-text {
+      margin: 0 0 16px 0;
+      font-size: 14px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      line-height: 1.4;
+
+      ion-icon {
+        font-size: 18px;
+        margin-right: 8px;
+        color: #0426ac;
+        flex-shrink: 0;
+      }
+    }
+
     .input-label {
       display: flex;
       align-items: center;
       font-weight: 600;
       color: #0426ac;
-      font-size: 15px;
-      margin-bottom: 6px;
-  
+      font-size: 16px;
+      margin-bottom: 12px;
+
       ion-icon {
-        margin-right: 8px;
-        font-size: 25px;
+        margin-right: 10px;
+        font-size: 22px;
         color: #0426ac;
       }
     }
-  
+
     ion-input {
       background: rgba(240, 240, 240, 0.95);
       border-radius: 12px;
-      --padding-start: 12px;
-      font-size: 15px;
-      height: 44px;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      font-size: 16px;
+      height: 56px;
       --highlight-color-focused: #0426ac;
+      --color: #333;
+      transition: all 0.3s ease;
+      
+      &:focus-within {
+        box-shadow: 0 0 0 2px rgba(4, 38, 172, 0.2);
+      }
     }
   }
-  
 
   ion-button {
     margin: 0 16px 24px;
@@ -132,6 +163,14 @@ ion-content.correo-page {
       transform: scale(1.03);
     }
 
+    ion-icon {
+      font-size: 20px;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
     &.success {
       --background: #2dd36f;
       animation: pulseSuccess 0.6s ease;
@@ -146,53 +185,6 @@ ion-content.correo-page {
   @keyframes pulseSuccess {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
-  }
-}
-.helper-text {
-  margin: 0 0 4px 0;     /* solo margen abajo */
-  font-size: 13px;
-  color: #666;
-  display: flex;
-  align-items: center;
-
-  ion-icon {
-    font-size: 14px;
-    margin-right: 6px;
-    color: #666;
-  }
-}
-
-.custom-item {
-  margin: 10px;
-
-  .input-label {
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    color: #0426ac;
-    font-size: 15px;
-    margin-bottom: 6px;
-
-    ion-icon {
-      margin-right: 8px;
-      font-size: 25px;
-      color: #0426ac;
-    }
-  }
-
-  ion-input {
-    background: rgba(240, 240, 240, 0.95);
-    border-radius: 12px;
-    --padding-start: 12px;
-    font-size: 15px;
-    height: 44px;
-    --highlight-color-focused: #0426ac;
-  }
-
-  .helper-text ion-icon {
-    font-size: 28px; // O incluso 20px si quieres que destaque más
-    margin-right: 6px;
-    color: #002aff;
   }
   
 

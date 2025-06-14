@@ -1,8 +1,6 @@
-<!-- HTML: reset-password.page.html -->
 <ion-content class="correo-page" [fullscreen]="true">
   <!-- Fondo con imagen y degradado -->
   <div class="background-overlay"></div>
-  <ion-content class="correo-page" [fullscreen]="true">
 
   <!-- Contenedor centrado usando Ionic Grid -->
   <ion-grid class="grid-center">
@@ -18,17 +16,13 @@
           <!-- Cabecera -->
           <ion-card-header class="card-header">
             <ion-card-title>
-              <h2><i class="fas fa-lock"></i> Nueva Contraseña</h2>
+              <h2><ion-icon name="lock-closed-outline"></ion-icon> Nueva Contraseña</h2>
             </ion-card-title>
-            <ion-card-subtitle>
-   
-            </ion-card-subtitle>
           </ion-card-header>
 
           <!-- Contenido del formulario -->
           <ion-card-content>
             <ion-item lines="none" class="custom-item">
-              <!-- Texto explicativo encima -->
               <p class="helper-text">
                 <ion-icon name="information-circle-outline"></ion-icon>
                 Ingrese su correo institucional para recibir el token de verificación.
@@ -45,7 +39,6 @@
                 placeholder="correo@ucvvirtual.edu.pe">
               </ion-input>
             </ion-item>
-            
 
             <ion-button expand="block" [class.success]="sent" (click)="sendVerificationCode()">
               <ion-icon slot="start" [name]="sent ? 'checkmark-circle-outline' : 'paper-plane-outline'"></ion-icon>
@@ -56,5 +49,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>
