@@ -69,12 +69,15 @@ export class UserService {
   }
   
   // Establecer el usuario actual
-  setCurrentUser(user: any) {
+  setCurrentUser(user: any, token: any) {
   this.currentUser = user;
-  if (user) {
+  if (user && token) {
     localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('access_token', token);
+    
   } else {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('access_token');
   }
 }
 
