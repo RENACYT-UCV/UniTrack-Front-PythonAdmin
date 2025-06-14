@@ -1,128 +1,58 @@
 @import 'src/theme/tablas_base'; // Importa los estilos compartidos
 
-/* Personalización para Salidas */
-.report {
-  color: #c62828; // Color rojo para diferenciar
-}
-
-/* Cambia el degradado del header si lo deseas */
-.table-container .tit {
-  background: linear-gradient(135deg, #c62828 0%, #8e0000 100%);
-#main-content {
+.title-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 1.9rem 5%;
-  max-width: 800px; 
-  margin: 0 auto;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%); // Fondo degradado sutil
-  min-height: 100vh;
+background: 
+  linear-gradient(#66020293, #4e000049), 
+  url('/assets/header-background.svg') no-repeat center center;
+background-size: cover;
+  background-size: cover;
+  margin: 30px 35px 0px 35px;
+  padding: 15px 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  gap: 2em;
+
+  border: 2px solid rgb(255, 255, 255); // Puedes ajustar el color y grosor
 }
 
 
-.table-container-salidas {
-  border: 1px solid #e0e0e0;
-  border-radius: 11px; 
-  overflow: hidden; 
-  width: 100%;
-  margin: 1.5rem 0;
-  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.08);
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeInUp 0.5s ease-out forwards;
-  
-
-  .tit {
-    background: linear-gradient(135deg, #DD2324 0%, #af1818 100%) !important;
-    color: white !important;
-    font-weight: 600;
-    text-align: center;
-    padding: 1rem;
-    position: relative;
-    border-bottom: none !important;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: rgba(255, 255, 254, 0.1);
-    }
-  }
-  
-  /* Filas de contenido */
-  .sub {
-    text-align: center;
-    padding: 0.8rem 1rem;
-    color: #2c3e49;
-    transition: all 0.25s ease;
-    border-bottom: 1px solid #f0f0f0;
-    &:hover {
-      transform: scale(1.01); // Efecto de "levitación" sutil
-    }
-  }
-
-  
-  ion-row:nth-child(even) .sub {
-    background-color: #f8f8f8;
-  }
-
-  
-  ion-row:hover .sub {
-    background: #af1818 !important;
-    color: white !important;
-    box-shadow: 0 2px 5px rgba(175, 24, 24, 0.2);
-  }
+.title {
+  font-size: 34px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  user-select: none;
+  flex: 1;
+  text-align: left;
 }
 
-/* Título de sección */
-.report-salidas {
-  font-size: clamp(1.4rem, 5vw, 1.9rem);
-  font-weight: 700;
-  text-align: center;
-  color: #DD2324 !important;
-  margin: 1.5rem 0;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  position: relative;
-  display: inline-block;
-  
-  &::after {
-    content: '';
-    display: block;
-    width: 50%;
-    height: 3px;
-    background: #DD2324;
-    margin: 0.5rem auto 0;
-    border-radius: 3px;
-  }
+.icon-container {
+  background-color: #580404;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Animaciones */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.menu-icon {
+  font-size: 2em;
+  color: #e4e8ed;
 }
 
-/* Responsive mejorado */
+
+
 @media (max-width: 834px) {
-  .table-container {
-    .tit, .sub {
-      padding: 0.75rem 0.5rem;
-      font-size: 0.9rem;
-    }
+
+  .title-container {
+    margin: 60px 35px 0px 35px;
+
   }
-  
-  .report-salidas {
-    font-size: clamp(1.3rem, 5vw, 1.6rem);
+
+  .title{
+  font-size: 24px;
   }
-}  }
+}

@@ -1,13 +1,12 @@
-<ion-content class="ion-padding">
+<ion-content>
   <div class="background-blur"></div>
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Reportes Entradas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class="title-container">
+    <div class="icon-container" (click)="openMenu()">
+      <ion-icon name="menu" class="menu-icon"></ion-icon>
+    </div>
+    <div class="title">REPORTES DE ENTRADA</div>
+  </div>
 
   
   <div class="table-container">

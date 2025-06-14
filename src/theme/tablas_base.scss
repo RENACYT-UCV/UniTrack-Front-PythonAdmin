@@ -1,66 +1,46 @@
-/* Variables reutilizables */
-$color-primario: #233559;
-$color-secundario: #182531;
-$degradado-header: linear-gradient(135deg, $color-primario 0%, $color-secundario 100%);
-
 .background-blur {
-  background: url('/assets/ucv-sede.png') no-repeat center center/cover; // Cambia por tu imagen
-  filter: blur(8px);
+  background: url('/assets/background-tables-section.svg') no-repeat center center/cover; // Cambia por tu imagen
   position: fixed; // Usa fixed para cubrir toda la pantalla
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  opacity: 0.89;
   z-index: -1; // Para que esté detrás del contenido
-  opacity: 0.7; // Ajusta la opacidad si es necesario
 }
 
-/* Asegúrate que el contenido no se vea afectado por el blur */
-ion-content {
-  position: relative; // Necesario para que z-index funcione
-  background: transparent !important;
+ion-row {
+  border: 2px solid #dcdcdc; // gris claro, puedes cambiarlo
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 6px;
 }
 
-ion-toolbar {
-  --background: rgba(35, 53, 89, 0.7); /* $color-primario con opacidad */
-  --color: white; /* Texto blanco */
-}
-
-ion-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3); // Ajusta el color y opacidad
-  z-index: -1;
-}
 
 /* Estilos base para ambas tablas */
 .table-container {
-  border: 1px solid #d1d9e6;
+  user-select: none;
   border-radius: 12px;
   overflow: hidden;
-  width: 100%;
-  margin: 1.5rem 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 20px 30px;
   transform: translateY(20px);
   opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
 
   ion-row:nth-child(even) .sub {
-    background-color: #f8fafc;
+    background-color: #ffffff;
+  }
+  ion-row:nth-child(odd) .sub {
+    background-color: #f4f4f4;
   }
 
   ion-row:hover .sub {
-    background: $color-secundario !important;
-    color: white;
-    box-shadow: 0 2px 8px rgba($color-secundario, 0.2);
+    background: #e61313e8 !important;
+    color: rgb(255, 255, 255);
   }
 
   .tit {
-    background: $degradado-header;
+    background: #02041eb0;
     color: white;
     font-weight: 600;
     text-align: center;
@@ -74,7 +54,7 @@ ion-content::before {
       left: 0;
       width: 100%;
       height: 2px;
-      background: rgba(255, 255, 255, 0.2);
+      background: transparent;
     }
   }
 
@@ -83,7 +63,6 @@ ion-content::before {
     padding: 0.8rem 1rem;
     color: #2c3e50;
     transition: all 0.3s ease;
-    border-bottom: 1px solid #e3e8ee;
 
     &:hover {
       transform: scale(1.02);
@@ -119,7 +98,6 @@ ion-content::before {
     display: block;
     width: 50%;
     height: 3px;
-    background: linear-gradient(90deg, $color-primario, transparent);
     margin: 0.5rem auto 0;
     border-radius: 3px;
   }
@@ -136,9 +114,27 @@ ion-item {
   .table-container {
     .tit, .sub {
       padding: 0.75rem 0.5rem;
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
   }
+  .report {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 834px) {
+  .table-container {
+    .tit {
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+    }
+
+    .sub {
+      padding: 0.7rem 0.4rem;
+      font-size: 0.75rem; // o incluso 0.75rem si quieres más compacto
+    }
+  }
+
   .report {
     font-size: 1.4rem;
   }

@@ -50,4 +50,11 @@ export class SalidasPage implements OnInit {
       this.nombrecompleto = `${currentUser.nombres} ${currentUser.apellidos}`;
     }
   }
+
+    openMenu() {
+    const menu = document.querySelector('ion-menu');
+    if (menu) {
+      (menu as HTMLIonMenuElement).open();
+    }
+  }
 }
