@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
         if (response.error) {
           this.presentToast(response.message || 'Error de autenticación');
         } else {
-          this.userService.setCurrentUser(response);
+          //this.userService.setCurrentUser(response);
           this.presentToast('¡Login exitoso!', 'success');
           this.router.navigate(['/home']);
         }

@@ -27,7 +27,6 @@ export class UserService {
     nombres: string,
     apellidos: string,
     correo: string,
-    codigo_admin: string,
     contrasena: string,
     edad: string,
     sexo: string // Debe ser 'M' o 'F'
@@ -36,10 +35,10 @@ export class UserService {
       // Devuelve un error en formato estándar
       return throwError({ error: true, message: 'El correo debe ser de la universidad' });
     }
-    const sexoNormalizado = sexo.toLowerCase() === 'hombre' ? 'M' : (sexo.toLowerCase() === 'mujer' ? 'F' : sexo);
-    const body = { nombres, apellidos, correo, codigo_admin, contrasena, edad, sexo: sexoNormalizado };
+    const sexoNormalizado = sexo.toLowerCase() === 'hombre' ? 'Male' : (sexo.toLowerCase() === 'mujer' ? 'Female' : sexo);
+    const body = { nombres, apellidos, correo, contrasena,edad:`${edad}`, sexo: sexoNormalizado };
 
-    return this.http.post<any>(this.apiUrl, body).pipe(
+    return this.http.post<any>(this.apiUrl+'admin', body).pipe(
       catchError((error) => throwError({ error: true, message: 'Error al crear administrador', details: error }))
     );
   }
@@ -55,8 +54,8 @@ export class UserService {
 
   // Iniciar sesión de usuario
    loginUser(correo: string, contrasena: string): Observable<any> {
-    const body = { action: 'login', correo, contrasena };
-    return this.http.post(`${this.apiUrl}`, body, { withCredentials: true }).pipe(
+    const body = { correo, contrasena };
+    return this.http.post(`${this.apiUrl}admin/login`, body).pipe(
       catchError((error) => throwError({ error: true, message: 'Error al iniciar sesión', details: error }))
     );
   }

@@ -13,7 +13,6 @@ export class RegisterPage implements OnInit {
   nombres: string = '';
   apellidos: string = '';
   correo: string = '';
-  codigo_admin: string = '';
   edad: string= ''; 
   sexo: string= ''; 
   contrasena: string = '';
@@ -34,7 +33,6 @@ export class RegisterPage implements OnInit {
     !this.nombres ||
     !this.apellidos ||
     !this.correo ||
-    !this.codigo_admin ||
     !this.contrasena ||
     !this.edad ||
     !this.sexo
@@ -55,11 +53,6 @@ export class RegisterPage implements OnInit {
   // Validar longitud máxima de campos
   if (this.nombres.length > 50 || this.apellidos.length > 50) {
     this.presentToast('Nombre y apellido no deben superar 50 caracteres');
-    this.isSubmitting = false;
-    return;
-  }
-  if (this.codigo_admin.length > 20) {
-    this.presentToast('El código de administrador no debe superar 20 caracteres');
     this.isSubmitting = false;
     return;
   }
@@ -84,7 +77,6 @@ export class RegisterPage implements OnInit {
     this.nombres,
     this.apellidos,
     this.correo,
-    this.codigo_admin,
     this.contrasena,
     this.edad,
     this.sexo
