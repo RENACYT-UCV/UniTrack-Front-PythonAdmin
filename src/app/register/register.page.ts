@@ -81,13 +81,30 @@ export class RegisterPage implements OnInit {
     this.edad,
     this.sexo
   ).subscribe(
-    () => {
-      this.presentToast('Administrador registrado con éxito', 'success');
-      this.router.navigate(['/login']);
+    (response: any) => {
+      if (response.access_token) {
+        const userData = {
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          correo: this.correo,
+          edad: this.edad,
+          sexo: this.sexo,
+          idAdmin: response.idAdmin
+        };
+        
+        this.userService.setCurrentUser(userData, response.access_token);
+        
+        this.presentToast('Administrador registrado con éxito', 'success');
+        this.router.navigate(['/home']); // Redirigir al dashboard o página principal
+      } else {
+        this.presentToast('Error en el registro: respuesta inesperada del servidor');
+      }
       this.isSubmitting = false;
     },
     (error: any) => {
-      this.presentToast(error.message || 'Error al registrar el usuario');
+      console.error('Error en el registro:', error);
+      const errorMessage = error.error?.message || 'Error al registrar el administrador';
+      this.presentToast(errorMessage);
       this.isSubmitting = false;
     }
   );

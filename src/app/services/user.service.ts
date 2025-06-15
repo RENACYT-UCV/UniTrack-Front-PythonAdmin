@@ -36,10 +36,16 @@ export class UserService {
       return throwError({ error: true, message: 'El correo debe ser de la universidad' });
     }
     const sexoNormalizado = sexo.toLowerCase() === 'hombre' ? 'Male' : (sexo.toLowerCase() === 'mujer' ? 'Female' : sexo);
-    const body = { nombres, apellidos, correo, contrasena,edad:`${edad}`, sexo: sexoNormalizado };
+    const body = { nombres, apellidos, correo, contrasena, edad: `${edad}`, sexo: sexoNormalizado };
 
     return this.http.post<any>(this.apiUrl+'admin', body).pipe(
-      catchError((error) => throwError({ error: true, message: 'Error al crear administrador', details: error }))
+      catchError((error) => {
+        console.error('Error en createAdmin:', error);
+        if (error.error && error.error.error) {
+          return throwError({ error: true, message: error.error.error });
+        }
+        return throwError({ error: true, message: 'Error al crear administrador', details: error });
+      })
     );
   }
 
