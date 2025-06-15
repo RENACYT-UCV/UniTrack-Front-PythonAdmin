@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8101/BD_PROYUSER/Admin_api.php',
+  apiUrl: 'http://localhost:3000/',
   correoApiUrl: 'http://localhost/BD_PROYUSER/correo.php',
   flaskUrl: 'http://localhost:5000',
 };

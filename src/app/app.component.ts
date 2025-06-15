@@ -33,11 +33,11 @@ export class AppComponent {
   logout() {
     this.userService.logoutUser().subscribe(
       res => {
-        this.userService.setCurrentUser(null);
+        this.userService.setCurrentUser(null, null);
         this.router.navigate(['/login']);
       },
       err => {
-        this.userService.setCurrentUser(null);
+        this.userService.setCurrentUser(null, null);
         this.router.navigate(['/login']);
       }
     );
