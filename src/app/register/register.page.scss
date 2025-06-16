@@ -2,9 +2,11 @@
   --background: transparent;
   position: relative;
   overflow: hidden;
+  height: 100vh; // Asegura que la página ocupe toda la altura de la ventana
+  width: 100vw; // Asegura que la página ocupe todo el ancho de la ventana
 
   .background-blur {
-    background: url('/assets/register.jpeg') no-repeat center center/cover;
+    background: url('../../assets/login.svg') no-repeat center center/cover;
     filter: blur(8px);
     position: absolute;
     top: 0;
@@ -12,12 +14,13 @@
     right: 0;
     bottom: 0;
     z-index: -1;
+    // background-size: cover; // Ya está incluido en la propiedad background
   }
 
   .form-wrapper {
     max-width: 450px;
     margin: auto;
-    margin-top: 15px;
+    margin-top: 10vh; // Modificado para bajar el contenedor
     padding: 30px 20px;
     border-radius: 24px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -28,7 +31,7 @@
 
   .btn-close {
     position: absolute;
-    left: 20px;
+    right: 20px; // Cambiado de left a right
     top: 20px;
     ion-icon {
       font-size: 24px;
@@ -74,11 +77,29 @@
     }
 
     ion-icon {
-      font-size: 20px;
+      font-size: 27px;
       color: #007aff;
     }
-  }
+    &.password-item {
+      position: relative; // Needed for absolute positioning of the icon
 
+      .password-toggle-icon {
+        position: absolute;
+        right: 30px; // Adjust as needed for padding
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 25px; // Match other icons or adjust as needed
+        color: #007aff; // Match other icons or adjust as needed
+        cursor: pointer;
+        z-index: 2; // Ensure it's above the input field
+      }
+
+      ion-input {
+        // Ensure there's enough padding on the right for the icon
+        padding-right: 40px !important; 
+      }
+    }
+  }
   .submit-btn {
     background: linear-gradient(135deg, #3a60ff, #0040c1);
     color: white;

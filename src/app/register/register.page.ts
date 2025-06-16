@@ -17,6 +17,7 @@ export class RegisterPage implements OnInit {
   sexo: string= ''; 
   contrasena: string = '';
   isSubmitting = false; // Para prevenir envío doble
+  showPassword: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -121,6 +122,7 @@ export class RegisterPage implements OnInit {
   }
   ngOnInit() {
   }
-  
-
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 }

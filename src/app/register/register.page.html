@@ -46,10 +46,11 @@
         </ion-select>
       </ion-item>
 
-      <ion-item class="form-item animate-field" style="animation-delay: 0.6s;">
+      <ion-item class="form-item animate-field password-item" style="animation-delay: 0.6s;">
         <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="contrasena" name="contrasena"></ion-input>
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="contrasena" name="contrasena"></ion-input>
+        <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" slot="end" (click)="togglePasswordVisibility()" class="password-toggle-icon"></ion-icon>
       </ion-item>
 
       <ion-button expand="block" type="submit" class="submit-btn animate-button">Registrar</ion-button>
