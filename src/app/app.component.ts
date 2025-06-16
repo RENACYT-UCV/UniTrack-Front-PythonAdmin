@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { UserService } from './services/user.service'; // <-- Agrega esta línea
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,21 @@ import { UserService } from './services/user.service'; // <-- Agrega esta línea
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  hideMenu: boolean = false;
+
   constructor(
     private menuCtrl: MenuController,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.setupMenu();
+    this.router.events.pipe(
+      filter((event: any): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const currentRoute = event.urlAfterRedirects;
+      this.hideMenu = currentRoute.includes('/login') || currentRoute.includes('/register') || currentRoute.includes('/correo');
+    });
   }
 
   private setupMenu() {
