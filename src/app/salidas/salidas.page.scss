@@ -1,26 +1,28 @@
 @import 'src/theme/tablas_base'; // Importa los estilos compartidos
 
+
 .title-container {
   display: flex;
   align-items: center;
-background: 
-  linear-gradient(#66020293, #4e000049), 
-  url('/assets/header-background.svg') no-repeat center center;
-background-size: cover;
+  background: 
+  linear-gradient(#fdfdfd3b, #b8a4a449), 
+  url('/assets/header-background-w.svg') no-repeat center center;
+  background-size: cover;
   background-size: cover;
   margin: 30px 35px 0px 35px;
   padding: 15px 30px;
   border-radius: 20px;
   overflow: hidden;
   gap: 2em;
-
   border: 2px solid rgb(255, 255, 255); // Puedes ajustar el color y grosor
 }
 
 
 .title {
   font-size: 34px;
-  color: #ffffff;
+  background: linear-gradient(180deg, #740f0f, #d32525); /* de arriba a abajo */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
   font-family: 'Inter', sans-serif;
   font-weight: 900;
   user-select: none;
@@ -29,7 +31,7 @@ background-size: cover;
 }
 
 .icon-container {
-  background-color: #580404;
+  background: linear-gradient(180deg, #740f0f, #d32525); /* de arriba a abajo */
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -40,7 +42,7 @@ background-size: cover;
 
 .menu-icon {
   font-size: 2em;
-  color: #e4e8ed;
+  color: #ffffff;
 }
 
 

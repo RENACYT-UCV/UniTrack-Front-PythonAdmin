@@ -3,6 +3,7 @@
 
   <div class="title-container">
     <div class="icon-container" (click)="openMenu()">
+      
       <ion-icon name="menu" class="menu-icon"></ion-icon>
     </div>
     <div class="title">REPORTES DE SALIDA</div>
@@ -11,20 +12,22 @@
   <div class="table-container">
     <ion-grid>
       <ion-row>
-        <ion-col class="tit" size="2"><strong>ID</strong></ion-col>
-        <ion-col class="tit" size="2"><strong>Usuario</strong></ion-col>
-        <ion-col class="tit" size="2"><strong>Correo</strong></ion-col>
-        <ion-col class="tit" size="2"><strong>Fecha</strong></ion-col>
-        <ion-col class="tit" size="2"><strong>Hora</strong></ion-col>
-        <ion-col class="tit" size="2"><strong>Modo</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>ID</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>Usuario</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>Nombre</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>Correo</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>Fecha</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>Hora</strong></ion-col>
+        <ion-col class="tit" size="1.8"><strong>Modo</strong></ion-col>
       </ion-row>
       <ion-row *ngFor="let registro of reportes"> <!-- Asegúrate de usar tu variable correcta -->
-        <ion-col class="sub" size="2">{{ registro.idReporte }}</ion-col>
-        <ion-col class="sub" size="2">{{ registro.nombre }}</ion-col>
-        <ion-col class="sub" size="2">{{ registro.email }}</ion-col>
-        <ion-col class="sub" size="2">{{ registro.fecha }}</ion-col>
-        <ion-col class="sub" size="2">{{ registro.hora }}</ion-col>
-        <ion-col class="sub" size="2">{{ registro.modo }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.idReporte }}</ion-col>
+       <!-- <ion-col class="sub" size="1.7">{{ registro.idUsuario }}</ion-col> -->
+        <ion-col class="sub" size="1.7">{{ registro.nombre }}</ion-col> 
+        <ion-col class="sub" size="1.7">{{ registro.email }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.fecha }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.hora }}</ion-col>
+        <ion-col class="sub" size="1.8">{{ registro.modo }}</ion-col>
       </ion-row>
     </ion-grid>
   </div>
