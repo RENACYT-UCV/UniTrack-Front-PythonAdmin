@@ -1,20 +1,32 @@
 .register-page {
-  --background: transparent;
+  --background: #0426ac; /* Un color azul oscuro para el fondo base */
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Asegura que el contenido que se desborda se recorta */
   height: 100vh; // Asegura que la página ocupe toda la altura de la ventana
   width: 100vw; // Asegura que la página ocupe todo el ancho de la ventana
 
   .background-blur {
-    background: url('../../assets/login.svg') no-repeat center center/cover;
-    filter: blur(8px);
+    background-image: url('../../assets/Login.svg');
+
+    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    height: 125vh; /* Ajusta la altura del div al 100% del padre */
+    width: 100%; /* Ajusta el ancho del div al 100% del padre */
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    display: flex;
+  justify-content: center;
+  align-items: center;
     z-index: -1;
-    // background-size: cover; // Ya está incluido en la propiedad background
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to bottom right, rgba(4, 38, 172, 0.4), rgba(0, 153, 255, 0.6)); /* Se mantiene la superposición de color */
+      z-index: 1;
+    }
   }
 
   .form-wrapper {
@@ -63,7 +75,7 @@
   .form-item {
     --background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
     ion-label {
       font-weight: 600;
@@ -224,8 +236,8 @@
   }
 }
 
-
-
-
-
 }
+
+
+
+
