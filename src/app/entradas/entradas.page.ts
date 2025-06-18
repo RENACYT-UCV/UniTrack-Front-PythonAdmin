@@ -3,6 +3,7 @@ import { FlaskService } from '../services/flask.service';
 import { UserService } from '../services/user.service';
 import { Reporte } from '../services/reporte';
 import { ToastController } from '@ionic/angular';
+import { EntradaService } from '../services/entradas.service';
 
 @Component({
   selector: 'app-entradas',
@@ -10,16 +11,15 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./entradas.page.scss'],
 })
 export class EntradasPage implements OnInit {
-
-  reportes: Reporte[] = []; // Utiliza la interfaz Reporte para definir el tipo de reportes
+  reportes: Reporte[] = [];
   verificationResult: string = '';
-  nombrecompleto: string = ''; 
-  
+  nombrecompleto: string = '';
 
-   constructor(
+  constructor(
     private userService: UserService,
     private flaskservice: FlaskService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private entradaService: EntradaService
   ) {}
 
   async presentToast(message: string, color: string = 'danger') {
@@ -27,17 +27,17 @@ export class EntradasPage implements OnInit {
       message,
       duration: 2000,
       color,
-      position: 'bottom'
+      position: 'bottom',
     });
     await toast.present();
   }
 
   loadReportes(): void {
     this.userService.getReportes().subscribe(
-      data => {
+      (data) => {
         this.reportes = data;
       },
-      error => {
+      (error) => {
         this.presentToast(error.message || 'Error al obtener los reportes');
       }
     );
@@ -50,8 +50,17 @@ export class EntradasPage implements OnInit {
     if (currentUser) {
       this.nombrecompleto = `${currentUser.nombres} ${currentUser.apellidos}`;
     }
+
+    this.entradaService.entradas().subscribe({
+      next: (data) => {
+        this.reportes = data;
+      },
+      error: (error) => {
+        this.presentToast(error.message || 'Error al obtener las entradas');
+      },
+    });
   }
-    openMenu() {
+  openMenu() {
     const menu = document.querySelector('ion-menu');
     if (menu) {
       (menu as HTMLIonMenuElement).open();
