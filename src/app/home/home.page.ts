@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
   reportes: Reporte[] = []; // Utiliza la interfaz Reporte para definir el tipo de reportes
   verificationResult: string = '';
   nombrecompleto: string = '';
@@ -22,7 +21,7 @@ export class HomePage implements OnInit {
   edad: string = '';
   sexo: string = '';
   qrLeido: string = '';
-  
+
   constructor(
     private userService: UserService,
     private flaskservice: FlaskService,
@@ -31,29 +30,29 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-  this.currentUser = this.userService.getCurrentUser();
-  if (this.currentUser) {
-    this.nombrecompleto = `${this.currentUser.nombres} ${this.currentUser.apellidos}`;
-    this.codigo = this.currentUser.codigo_admin;
-    this.correo = this.currentUser.correo;
-    this.edad = this.currentUser.edad;
-    this.sexo = this.currentUser.sexo;
-  } /*else {
+    this.currentUser = this.userService.getCurrentUser();
+    if (this.currentUser) {
+      this.nombrecompleto = `${this.currentUser.nombres} ${this.currentUser.apellidos}`;
+      this.codigo = this.currentUser.codigo_admin;
+      this.correo = this.currentUser.correo;
+      this.edad = this.currentUser.edad;
+      this.sexo = this.currentUser.sexo;
+    } /*else {
     // Si no hay sesión, redirige al login
     this.router.navigate(['/login']);
   }*/
-}
+  }
 
   verifyQR(qrLeido: string) {
     this.flaskservice.verifyQR(qrLeido).subscribe(
-      result => {
+      (result) => {
         // Maneja la respuesta de verificación
         this.verificationResult = result.verified
           ? '¡Verificación correcta, puede ingresar!'
           : '¡ERROR EN LA VERIFICACIÓN!';
         this.showAlert();
       },
-      error => {
+      (error) => {
         this.verificationResult = 'Error verificando QR';
         this.showAlert();
       }
@@ -65,10 +64,17 @@ export class HomePage implements OnInit {
       const alert = await this.alertController.create({
         header: 'Verificación',
         message: this.verificationResult,
-        buttons: ['Aceptar']
+        buttons: ['Aceptar'],
       });
 
       await alert.present();
+    }
+  }
+
+  openMenu() {
+    const menu = document.querySelector('ion-menu');
+    if (menu) {
+      (menu as HTMLIonMenuElement).open();
     }
   }
 }
