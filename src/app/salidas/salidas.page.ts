@@ -3,6 +3,7 @@ import { FlaskService } from '../services/flask.service';
 import { UserService } from '../services/user.service';
 import { Reporte } from '../services/reporte';
 import { ToastController } from '@ionic/angular';
+import { EntradaService } from '../services/entradas.service';
 
 @Component({
   selector: 'app-salidas',
@@ -19,7 +20,8 @@ export class SalidasPage implements OnInit {
   constructor(
     private userService: UserService,
     private flaskservice: FlaskService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private entradaService: EntradaService
   ) {}
 
   async presentToast(message: string, color: string = 'danger') {
@@ -49,6 +51,15 @@ export class SalidasPage implements OnInit {
     if (currentUser) {
       this.nombrecompleto = `${currentUser.nombres} ${currentUser.apellidos}`;
     }
+
+    this.entradaService.salidas().subscribe({
+      next: (data) => {
+        this.reportes = data;
+      },
+      error: (error) => {
+        this.presentToast(error.message || 'Error al obtener las entradas');
+      },
+    });
   }
 
     openMenu() {

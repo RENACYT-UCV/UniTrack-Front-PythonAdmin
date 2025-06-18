@@ -11,6 +11,9 @@ export class EntradaService {
 
   public entradas(): Observable<Reporte[]> {
     return this.httpClient.get<Reporte[]>(`${this.apiUrl}/historial/entradas`);
-    // return this.httpClient.get<Reporte[]>(`http://localhost:3000/historial/entradas`);
+  }
+
+  public salidas(): Observable<Reporte[]> {
+    return this.httpClient.get<Reporte[]>(`${this.apiUrl}/historial/salidas`);
   }
 }
