@@ -41,6 +41,11 @@ export class HomePage implements OnInit {
     // Si no hay sesión, redirige al login
     this.router.navigate(['/login']);
   }*/
+    var token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
   }
 
   verifyQR(qrLeido: string) {
