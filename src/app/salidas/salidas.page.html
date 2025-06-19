@@ -21,13 +21,13 @@
         <ion-col class="tit" size="1.8"><strong>Modo</strong></ion-col>
       </ion-row>
       <ion-row *ngFor="let registro of reportes"> <!-- Asegúrate de usar tu variable correcta -->
-        <ion-col class="sub" size="1.7">{{ registro.idReporte }}</ion-col>
-       <!-- <ion-col class="sub" size="1.7">{{ registro.idUsuario }}</ion-col> -->
+        <ion-col class="sub" size="1.7">{{ registro.id }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.usuario }}</ion-col>
         <ion-col class="sub" size="1.7">{{ registro.nombre }}</ion-col> 
-        <ion-col class="sub" size="1.7">{{ registro.email }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.correo }}</ion-col>
         <ion-col class="sub" size="1.7">{{ registro.fecha }}</ion-col>
         <ion-col class="sub" size="1.7">{{ registro.hora }}</ion-col>
-        <ion-col class="sub" size="1.8">{{ registro.modo }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.modo }}</ion-col>
       </ion-row>
     </ion-grid>
   </div>
