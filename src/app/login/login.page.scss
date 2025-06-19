@@ -89,7 +89,7 @@ body {
 
 .form-subtitle {
   font-size: 1rem;
-  color: #4a6fff;
+  color: #000000;
   margin-bottom: 1.2rem;
 }
 
@@ -127,6 +127,8 @@ ion-icon {
   margin-top: 1.5rem;
   padding: 0.8rem;
   transition: transform 0.2s ease-in-out;
+  display: block;
+  margin: 1.5rem auto;
 }
 
 .login-button:hover {

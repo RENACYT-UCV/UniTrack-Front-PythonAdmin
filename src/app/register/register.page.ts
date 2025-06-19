@@ -13,11 +13,11 @@ export class RegisterPage implements OnInit {
   nombres: string = '';
   apellidos: string = '';
   correo: string = '';
-  codigo_admin: string = '';
   edad: string= ''; 
   sexo: string= ''; 
   contrasena: string = '';
   isSubmitting = false; // Para prevenir envío doble
+  showPassword: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -34,7 +34,6 @@ export class RegisterPage implements OnInit {
     !this.nombres ||
     !this.apellidos ||
     !this.correo ||
-    !this.codigo_admin ||
     !this.contrasena ||
     !this.edad ||
     !this.sexo
@@ -55,11 +54,6 @@ export class RegisterPage implements OnInit {
   // Validar longitud máxima de campos
   if (this.nombres.length > 50 || this.apellidos.length > 50) {
     this.presentToast('Nombre y apellido no deben superar 50 caracteres');
-    this.isSubmitting = false;
-    return;
-  }
-  if (this.codigo_admin.length > 20) {
-    this.presentToast('El código de administrador no debe superar 20 caracteres');
     this.isSubmitting = false;
     return;
   }
@@ -84,18 +78,34 @@ export class RegisterPage implements OnInit {
     this.nombres,
     this.apellidos,
     this.correo,
-    this.codigo_admin,
     this.contrasena,
     this.edad,
     this.sexo
   ).subscribe(
-    () => {
-      this.presentToast('Administrador registrado con éxito', 'success');
-      this.router.navigate(['/login']);
+    (response: any) => {
+      if (response.access_token) {
+        const userData = {
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          correo: this.correo,
+          edad: this.edad,
+          sexo: this.sexo,
+          idAdmin: response.idAdmin
+        };
+        
+        this.userService.setCurrentUser(userData, response.access_token);
+        
+        this.presentToast('Administrador registrado con éxito', 'success');
+        this.router.navigate(['/home']); // Redirigir al dashboard o página principal
+      } else {
+        this.presentToast('Error en el registro: respuesta inesperada del servidor');
+      }
       this.isSubmitting = false;
     },
     (error: any) => {
-      this.presentToast(error.message || 'Error al registrar el usuario');
+      console.error('Error en el registro:', error);
+      const errorMessage = error.error?.message || 'Error al registrar el administrador';
+      this.presentToast(errorMessage);
       this.isSubmitting = false;
     }
   );
@@ -112,6 +122,7 @@ export class RegisterPage implements OnInit {
   }
   ngOnInit() {
   }
-  
-
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 }

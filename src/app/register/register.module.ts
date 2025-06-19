@@ -17,4 +17,6 @@ import { RegisterPage } from './register.page';
   ],
   declarations: [RegisterPage]
 })
+
+
 export class RegisterPageModule {}
