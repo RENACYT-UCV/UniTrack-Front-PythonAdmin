@@ -102,14 +102,16 @@ export class UserService {
   
    // Obtener reportes (protegido)
   getReportes(): Observable<Reporte[]> {
-    return this.http.get<Reporte[]>(`${this.apiUrl}?action=reportes`, { withCredentials: true }).pipe(
+    var token = localStorage.getItem('access_token');
+    return this.http.get<Reporte[]>(`${this.apiUrl}historial/entradas`, { headers: { 'Authorization': `Bearer ${token}` } }).pipe(
       catchError((error) => throwError({ error: true, message: 'Error al obtener reportes', details: error }))
     );
   }
 
   // Obtener reportes de salidas (protegido)
   getReportesSalidas(): Observable<Reporte[]> {
-    return this.http.get<Reporte[]>(`${this.apiUrl}?action=salidas`, { withCredentials: true }).pipe(
+    var token = localStorage.getItem('access_token');
+    return this.http.get<Reporte[]>(`${this.apiUrl}historial/salidas`, { headers: { 'Authorization': `Bearer ${token}` } }).pipe(
       catchError((error) => throwError({ error: true, message: 'Error al obtener reportes de salidas', details: error }))
     );
   }
