@@ -12,18 +12,18 @@
   <div class="table-container">
     <ion-grid>
       <ion-row>
-        <ion-col class="tit" size="1.7"><strong>ID</strong></ion-col>
-        <ion-col class="tit" size="1.7"><strong>Usuario</strong></ion-col>
-        <ion-col class="tit" size="1.7"><strong>Nombre</strong></ion-col>
-        <ion-col class="tit" size="1.7"><strong>Correo</strong></ion-col>
-        <ion-col class="tit" size="1.7"><strong>Fecha</strong></ion-col>
-        <ion-col class="tit" size="1.7"><strong>Hora</strong></ion-col>
-        <ion-col class="tit" size="1.8"><strong>Modo</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>id</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>nombres</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>apellidos</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>correo</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>fecha</strong></ion-col>
+        <ion-col class="tit" size="1.7"><strong>hora</strong></ion-col>
+        <ion-col class="tit" size="1.8"><strong>modo</strong></ion-col>
       </ion-row>
       <ion-row *ngFor="let registro of reportes">
         <ion-col class="sub" size="1.7">{{ registro.id }}</ion-col>
-        <ion-col class="sub" size="1.7">{{ registro.usuario }}</ion-col>
-        <ion-col class="sub" size="1.7">{{ registro.nombre }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.nombres }}</ion-col>
+        <ion-col class="sub" size="1.7">{{ registro.apellidos }}</ion-col>
         <ion-col class="sub" size="1.7">{{ registro.correo }}</ion-col>
         <ion-col class="sub" size="1.7">{{ registro.fecha }}</ion-col>
         <ion-col class="sub" size="1.7">{{ registro.hora }}</ion-col>
