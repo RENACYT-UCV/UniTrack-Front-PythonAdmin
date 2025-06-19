@@ -1,8 +1,8 @@
 export interface Reporte {
     id: number;
-    usuario: string;
+    nombres: string;
+    apellidos: string;
     correo: string;
-    nombre: string;
     fecha: string;
     hora: string;
     modo: string; 
