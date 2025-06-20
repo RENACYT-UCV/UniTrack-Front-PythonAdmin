@@ -5,27 +5,30 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EnvioCorreoService {
   private apiUrl = environment.correoApiUrl; // URL de tu API
-  public currentUser: any= null; 
+  public currentUser: any = null;
+  public currentEmail: string = '';
 
-  constructor(private http: HttpClient, private navCtrl: NavController) { } 
- // Envía el código de verificación al correo del usuario
- sendVerificationCodee(email: string): Observable<any> {
-    const body = { action: 'send-code', email };
-    return this.http.post(`${this.apiUrl}`, body);
+  constructor(private http: HttpClient, private navCtrl: NavController) {}
+  // Envía el código de verificación al correo del usuario
+  sendVerificationCodee(correo: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}admin/forgot-password`, { correo });
   }
-  
+
   // Verifica el código de verificación
   verifyVerificationCode(code: number): Observable<any> {
-    const body = { action: 'verify-code', code };
-    return this.http.post(`${this.apiUrl}`, body);
+    return this.http.post(`${this.apiUrl}admin/verify-code`, { code });
   }
-   // Restablece la contraseña del usuario
-   resetPassword(newPassword: string, code: string): Observable<any> {
-    const body = { action: 'reset-password', password: newPassword, code };
-    return this.http.post(`${this.apiUrl}`, body);
+  // Restablece la contraseña del usuario
+  resetPassword(
+    correo: string,
+    newPassword: string,
+    code: string
+  ): Observable<any> {
+    const body = { correo: correo, password: newPassword, code };
+    return this.http.post(`${this.apiUrl}admin/reset-password`, body);
   }
 }
