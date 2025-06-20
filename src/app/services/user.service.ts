@@ -139,5 +139,23 @@ export class UserService {
       })
     );
   }
+ 
+  editAdmin(id: number, correo: string, edad: string, sexo: string): Observable<any> {
+    const body = { correo, edad, sexo };
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return throwError(() => new Error('No access token found'));
+    }
+    return this.http.patch(`${this.apiUrl}admin/${id}`, body,{
+      headers: { 'Authorization': `Bearer ${token}` } 
+    }).pipe(
+      catchError((error) => throwError({ error: true, message: 'Error al actualizar administrador', details: error }))
+    );
+  }
+  
+  
+  
+  
   
 }
