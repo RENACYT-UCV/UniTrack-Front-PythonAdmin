@@ -9,7 +9,6 @@ import { EnvioCorreoService } from '../services/envio-correo.service';
   styleUrls: ['./correo.page.scss'],
 })
 export class CorreoPage implements OnInit {
-
   email: string = '';
   isSubmitting = false;
   sent = false;
@@ -19,7 +18,7 @@ export class CorreoPage implements OnInit {
     private router: Router,
     private navCtrl: NavController,
     private toastController: ToastController
-  ) { }
+  ) {}
 
   ngOnInit() {}
 
@@ -28,7 +27,7 @@ export class CorreoPage implements OnInit {
       message,
       duration: 2000,
       color,
-      position: 'bottom'
+      position: 'bottom',
     });
     await toast.present();
   }
@@ -58,15 +57,22 @@ export class CorreoPage implements OnInit {
     }
 
     this.userService.sendVerificationCodee(this.email).subscribe(
-      response => {
-        this.sent = true;
-        setTimeout(() => {
-          this.sent = false;
-          this.navCtrl.navigateForward('/verificar');
-        }, 2000);
-        this.isSubmitting = false;
+      (response) => {
+        console.log('Código enviado:', response);
+        if (response && response.message) {
+          this.userService.currentEmail = this.email; // Guardar el correo actual
+          this.sent = true;
+          setTimeout(() => {
+            this.sent = false;
+            this.navCtrl.navigateForward('/verificar');
+          }, 2000);
+          this.isSubmitting = false;
+        } else {
+          this.presentToast(response.error || 'Error al enviar el código');
+          this.isSubmitting = false;
+        }
       },
-      error => {
+      (error) => {
         this.presentToast(error.message || 'Error al enviar el código');
         this.isSubmitting = false;
       }

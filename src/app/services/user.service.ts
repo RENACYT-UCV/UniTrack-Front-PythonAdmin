@@ -37,7 +37,7 @@ export class UserService {
     }
     const sexoNormalizado = sexo.toLowerCase() === 'hombre' ? 'Male' : (sexo.toLowerCase() === 'mujer' ? 'Female' : sexo);
     const body = { nombres, apellidos, correo, contrasena, edad: `${edad}`, sexo: sexoNormalizado };
-
+    alert(this.apiUrl)
     return this.http.post<any>(this.apiUrl+'admin', body).pipe(
       catchError((error) => {
         console.error('Error en createAdmin:', error);

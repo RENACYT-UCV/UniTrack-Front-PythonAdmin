@@ -10,10 +10,10 @@ export class EntradaService {
   constructor(private httpClient: HttpClient) {}
 
   public entradas(): Observable<Reporte[]> {
-    return this.httpClient.get<Reporte[]>(`${this.apiUrl}/historial/entradas`);
+    return this.httpClient.get<Reporte[]>(`${this.apiUrl}historial/entradas`);
   }
 
   public salidas(): Observable<Reporte[]> {
-    return this.httpClient.get<Reporte[]>(`${this.apiUrl}/historial/salidas`);
+    return this.httpClient.get<Reporte[]>(`${this.apiUrl}historial/salidas`);
   }
 }
