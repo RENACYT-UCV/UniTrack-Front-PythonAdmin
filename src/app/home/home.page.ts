@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlaskService } from '../services/flask.service';
 import { UserService } from '../services/user.service';
 import { Reporte } from '../services/reporte';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { InputCustomEvent } from '@ionic/angular';
 
@@ -28,10 +28,18 @@ export class HomePage implements OnInit {
     private userService: UserService,
     private flaskservice: FlaskService,
     private alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
+    this.currentUser = this.userService.getCurrentUser();
+    var token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.currentUser = this.userService.getCurrentUser();
     if (this.currentUser) {
       this.nombres = this.currentUser.nombres;
@@ -41,14 +49,6 @@ export class HomePage implements OnInit {
       this.edad = this.currentUser.edad;
       this.sexo = this.currentUser.sexo;
       this.idAdmin = this.currentUser.idAdmin;
-    } /*else {
-    // Si no hay sesión, redirige al login
-    this.router.navigate(['/login']);
-  }*/
-    var token = localStorage.getItem('access_token');
-    if (!token) {
-      this.router.navigate(['/login']);
-      return;
     }
   }
 
@@ -97,6 +97,7 @@ export class HomePage implements OnInit {
         console.log('Usuario editado correctamente:', response);
         this.isDisable = !this.isDisable;
         localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+        this.presentToast('Administrador editado correctamente', 'success');
       },
       (error) => {
         console.error('Error al editar el usuario:', error);
@@ -114,8 +115,18 @@ export class HomePage implements OnInit {
     this.currentUser.edad = this.edad;
   }
 
-  onChangeSex(sex: InputCustomEvent){
-    this.sexo = sex.detail.value || '';
+  onChangeSex(event: any){
+    this.sexo = event.detail.value || '';
     this.currentUser.sexo = this.sexo;
+  }
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',
+      color: color
+    });
+    toast.present();
   }
 }

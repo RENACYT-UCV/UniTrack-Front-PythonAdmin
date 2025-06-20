@@ -12,8 +12,7 @@ import { EntradaService } from '../services/entradas.service';
 })
 export class EntradasPage implements OnInit {
   reportes: Reporte[] = [];
-  verificationResult: string = '';
-  nombrecompleto: string = '';
+
 
   constructor(
     private userService: UserService,
@@ -32,25 +31,9 @@ export class EntradasPage implements OnInit {
     await toast.present();
   }
 
-  loadReportes(): void {
-    this.userService.getReportes().subscribe(
-      (data) => {
-        this.reportes = data;
-      },
-      (error) => {
-        this.presentToast(error.message || 'Error al obtener los reportes');
-      }
-    );
-  }
+
 
   ngOnInit() {
-    this.loadReportes();
-
-    const currentUser = this.userService.getCurrentUser();
-    if (currentUser) {
-      this.nombrecompleto = `${currentUser.nombres} ${currentUser.apellidos}`;
-    }
-
     this.entradaService.entradas().subscribe({
       next: (data) => {
         this.reportes = data;
