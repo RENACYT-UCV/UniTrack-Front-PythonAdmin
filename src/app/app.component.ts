@@ -40,16 +40,23 @@ export class AppComponent {
   }
 
   // Método para cerrar sesión (llamado desde el ítem del menú)
-  logout() {
-    this.userService.logoutUser().subscribe(
-      res => {
-        this.userService.setCurrentUser(null, null);
-        this.router.navigate(['/login']);
-      },
-      err => {
-        this.userService.setCurrentUser(null, null);
-        this.router.navigate(['/login']);
-      }
-    );
+  // Método para cerrar sesión (llamado desde el ítem del menú)
+  async logout() {
+    try {
+      await this.userService.logoutUser().toPromise().catch(() => {
+        console.log('No se pudo cerrar sesión en el servidor (puede ser normal)');
+      });
+
+      this.userService.setCurrentUser(null, null);
+      localStorage.clear();
+      await this.menuCtrl.close('main-menu');
+      await this.router.navigate(['/login'], { replaceUrl: true });
+      window.location.reload();
+    } catch (error) {
+      console.error('Error durante el cierre de sesión:', error);
+      this.userService.setCurrentUser(null, null);
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    }
   }
 }

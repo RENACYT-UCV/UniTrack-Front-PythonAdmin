@@ -4,6 +4,8 @@ import { Observable , throwError } from 'rxjs';
 import { Reporte } from './reporte';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +13,7 @@ export class UserService {
   private apiUrl = environment.apiUrl; // URL de tu API
   public currentUser: any = null;
   
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
    
   }
 
@@ -37,8 +39,7 @@ export class UserService {
     }
     const sexoNormalizado = sexo.toLowerCase() === 'hombre' ? 'Male' : (sexo.toLowerCase() === 'mujer' ? 'Female' : sexo);
     const body = { nombres, apellidos, correo, contrasena, edad: `${edad}`, sexo: sexoNormalizado };
-    alert(this.apiUrl)
-    return this.http.post<any>(this.apiUrl+'admin', body).pipe(
+    return this.http.post<any>(this.apiUrl+'admin/add', body).pipe(
       catchError((error) => {
         console.error('Error en createAdmin:', error);
         if (error.error && error.error.error) {
@@ -102,16 +103,58 @@ export class UserService {
   
    // Obtener reportes (protegido)
   getReportes(): Observable<Reporte[]> {
-    return this.http.get<Reporte[]>(`${this.apiUrl}?action=reportes`, { withCredentials: true }).pipe(
-      catchError((error) => throwError({ error: true, message: 'Error al obtener reportes', details: error }))
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return throwError(() => new Error('No access token found'));
+    }
+    return this.http.get<Reporte[]>(`${this.apiUrl}historial/entradas`, { 
+      headers: { 'Authorization': `Bearer ${token}` } 
+    }).pipe(
+      catchError((error) => {
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+        return throwError(() => ({ error: true, message: 'Error al obtener reportes', details: error }));
+      })
     );
   }
 
   // Obtener reportes de salidas (protegido)
   getReportesSalidas(): Observable<Reporte[]> {
-    return this.http.get<Reporte[]>(`${this.apiUrl}?action=salidas`, { withCredentials: true }).pipe(
-      catchError((error) => throwError({ error: true, message: 'Error al obtener reportes de salidas', details: error }))
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return throwError(() => new Error('No access token found'));
+    }
+    return this.http.get<Reporte[]>(`${this.apiUrl}historial/salidas`, { 
+      headers: { 'Authorization': `Bearer ${token}` } 
+    }).pipe(
+      catchError((error) => {
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+        return throwError(() => ({ error: true, message: 'Error al obtener reportes de salidas', details: error }));
+      })
     );
   }
+ 
+  editAdmin(id: number, correo: string, edad: string, sexo: string): Observable<any> {
+    const body = { correo, edad, sexo };
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return throwError(() => new Error('No access token found'));
+    }
+    return this.http.patch(`${this.apiUrl}admin/${id}`, body,{
+      headers: { 'Authorization': `Bearer ${token}` } 
+    }).pipe(
+      catchError((error) => throwError({ error: true, message: 'Error al actualizar administrador', details: error }))
+    );
+  }
+  
+  
+  
+  
   
 }

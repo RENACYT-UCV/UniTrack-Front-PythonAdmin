@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { Reporte } from '../services/reporte';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { InputCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +12,18 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
   reportes: Reporte[] = []; // Utiliza la interfaz Reporte para definir el tipo de reportes
   verificationResult: string = '';
-  nombrecompleto: string = '';
-  nombre: string = '';
+  nombres: string = '';
+  apellidos: string = '';
   currentUser: any;
   codigo: string = '';
   correo: string = '';
   edad: string = '';
   sexo: string = '';
   qrLeido: string = '';
-  
+  isDisable : boolean = true;
+  idAdmin: number = 0;
   constructor(
     private userService: UserService,
     private flaskservice: FlaskService,
@@ -31,29 +32,36 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-  this.currentUser = this.userService.getCurrentUser();
-  if (this.currentUser) {
-    this.nombrecompleto = `${this.currentUser.nombres} ${this.currentUser.apellidos}`;
-    this.codigo = this.currentUser.codigo_admin;
-    this.correo = this.currentUser.correo;
-    this.edad = this.currentUser.edad;
-    this.sexo = this.currentUser.sexo;
-  } /*else {
+    this.currentUser = this.userService.getCurrentUser();
+    if (this.currentUser) {
+      this.nombres = this.currentUser.nombres;
+      this.apellidos = this.currentUser.apellidos;
+      this.codigo = this.currentUser.codigo_admin;
+      this.correo = this.currentUser.correo;
+      this.edad = this.currentUser.edad;
+      this.sexo = this.currentUser.sexo;
+      this.idAdmin = this.currentUser.idAdmin;
+    } /*else {
     // Si no hay sesión, redirige al login
     this.router.navigate(['/login']);
   }*/
-}
+    var token = localStorage.getItem('access_token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+  }
 
   verifyQR(qrLeido: string) {
     this.flaskservice.verifyQR(qrLeido).subscribe(
-      result => {
+      (result) => {
         // Maneja la respuesta de verificación
         this.verificationResult = result.verified
           ? '¡Verificación correcta, puede ingresar!'
           : '¡ERROR EN LA VERIFICACIÓN!';
         this.showAlert();
       },
-      error => {
+      (error) => {
         this.verificationResult = 'Error verificando QR';
         this.showAlert();
       }
@@ -65,10 +73,49 @@ export class HomePage implements OnInit {
       const alert = await this.alertController.create({
         header: 'Verificación',
         message: this.verificationResult,
-        buttons: ['Aceptar']
+        buttons: ['Aceptar'],
       });
 
       await alert.present();
     }
+  }
+
+  openMenu() {
+    const menu = document.querySelector('ion-menu');
+    if (menu) {
+      (menu as HTMLIonMenuElement).open();
+    }
+  }
+
+  editUser() {
+    this.isDisable = !this.isDisable;
+  }
+
+  saved(){
+    this.userService.editAdmin(this.idAdmin, this.correo, this.edad, this.sexo).subscribe(
+      (response) => {
+        console.log('Usuario editado correctamente:', response);
+        this.isDisable = !this.isDisable;
+        localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+      },
+      (error) => {
+        console.error('Error al editar el usuario:', error);
+      }
+    );
+  }
+
+  onChangeEmail(email: InputCustomEvent){
+    this.correo = email.detail.value || '';
+    this.currentUser.correo = this.correo;
+  }
+
+  onChangeAge(age: InputCustomEvent){
+    this.edad = age.detail.value || '';
+    this.currentUser.edad = this.edad;
+  }
+
+  onChangeSex(sex: InputCustomEvent){
+    this.sexo = sex.detail.value || '';
+    this.currentUser.sexo = this.sexo;
   }
 }

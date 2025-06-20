@@ -1,40 +1,78 @@
 <ion-content>
-  <!-- Header con botón hamburguesa -->
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="background-blur"></div>
 
-  <!-- Contenido principal -->
-  <ion-content>
-    <div class="content-wrapper">
-      <div class="container-main">
-        <div class="welcome">¡BIENVENIDO!</div>
-      
-        <div class="user-info">
-          <ion-item class="ionit" lines="none">
-            <div class="imgper"><ion-label class="foto"></ion-label></div>
-            <ion-label class="nom">{{ nombrecompleto }}</ion-label>
-          </ion-item>
+  <div class="title-container">
+    <div class="icon-container" (click)="openMenu()">
+      <ion-icon name="menu" class="menu-icon"></ion-icon>
+    </div>
+    <div class="title">HOME</div>
+  </div>
+
+
+  <div class="main-content">
+    <div class="admin-content">
+      <div class="welcome-container">
+        <p class="welcome-text">HOLA {{ currentUser.nombres.toUpperCase() }}, BIENVENIDO DE VUELTA!</p>
+        <!-- <ion-label class="nom">{{ nombrecompleto }}</ion-label> -->
+        <ion-label class="nom">{{ currentUser.nombres.toUpperCase() + ' ' + currentUser.apellidos.toUpperCase() }}</ion-label>
+      </div>
+
+      <div class="inputs-content-container">
+
+        <div class="input-container">
+          <p>Correo Universitario:</p>
+          <ion-input placeholder="Editar Correo Universitario" class="sub-form" [(ngModel)]="currentUser.correo" disabled="{{isDisable}}" (ionInput)="onChangeEmail($event)"></ion-input>
         </div>
-      
-          <div class="table-container">
-            <div class="tit">Correo universitario:</div>
-            <div class="sub">{{correo}}</div>
-            <div class="tit">Edad:</div>
-            <div class="sub">{{edad}}</div>
-            <div class="tit">Sexo:</div>
-            <div class="sub">{{sexo}}</div>
+
+        <div class="containers-flex">
+          <div class="first-container">
+            <div class="input-container">
+              <p>Edad:</p>
+              <ion-input placeholder="Editar su Edad" class="sub-form" [(ngModel)]="currentUser.edad" disabled="{{isDisable}}" (ionInput)="onChangeAge($event)"></ion-input>
+            </div>
+            <div class="input-container">
+              <p>Sexo:</p>
+              <ion-input placeholder="Editar su Sexo" class="sub-form" [(ngModel)]="currentUser.sexo" disabled="{{isDisable}}" (ionInput)="onChangeSex($event)"></ion-input>
+            </div>
           </div>
-           <div class="centro">
-            <ion-button (click)="verifyQR(qrLeido)" class="btn-verificar">Verificar QR</ion-button>
+
+          <div class="second-container-inputs">
+            <button class="btn-edit" (click)="editUser()">Editar</button>
+            <button class="btn-save" (click)="saved()" [disabled]="isDisable">Guardar</button>
           </div>
+        </div>
+      </div>
+
+    </div>
+    <img src=" /assets/ucv_gif_graduation.gif" alt="" class="image-container">
+    <div class="second-container"></div>
+  </div>
+
+  <!-- REMPLAZAR LOS VALORES DENTRO DEL INPUT -->
+  <!-- SE CARGAN DENTRO DE LOS QUE ESTAN ESTABLECIDOS Y POR AHORA ESTAN DISABLED  -->
+  <!-- <div class="content-wrapper">
+    <div class="container-main">
+      <div class="welcome">¡BIENVENIDO!</div>
+
+      <div class="user-info">
+        <ion-item class="ionit" lines="none">
+          <div class="imgper"><ion-label class="foto"></ion-label></div>
+          <ion-label class="nom">{{ currentUser.nombres.toUpperCase() + ' ' + currentUser.apellidos.toUpperCase() }}</ion-label>
+        </ion-item>
+      </div>
+
+      <div class="table-container">
+        <div class="tit">Correo universitario:</div>
+        <div class="sub">{{correo}}</div>
+        <div class="tit">Edad:</div>
+        <div class="sub">{{edad}}</div>
+        <div class="tit">Sexo:</div>
+        <div class="sub">{{sexo}}</div>
+      </div>
+      <div class="centro">
+        <ion-button (click)="verifyQR(qrLeido)" class="btn-verificar">Verificar QR</ion-button>
       </div>
     </div>
-    
-  </ion-content>
+  </div> -->
+
 </ion-content>
